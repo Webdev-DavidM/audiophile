@@ -1,0 +1,9 @@
+@import "./scss/mixins.scss";
+
+@import "./scss/variables.scss";
+
+@import "./scss/defaults.scss";
+
+.button {
+  @include arrow-button;
+}
