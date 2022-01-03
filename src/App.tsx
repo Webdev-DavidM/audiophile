@@ -18,7 +18,7 @@ function App() {
         <Route path="/product/:slug" element={<Product />}></Route>
       </Routes>
     </BrowserRouter>
-    <Header number={"sss"}/>
+    <Header/>
     </>
   );
 }
