@@ -1,0 +1,9 @@
+@import "../App.scss";
+
+.header {
+  &__hamburger {
+    @include tablet {
+      display: none;
+    }
+  }
+}
