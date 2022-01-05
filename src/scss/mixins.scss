@@ -21,15 +21,15 @@
   align-items: center;
   transition: all 0.4s ease-in-out;
 
-  svg {
-    margin-left: 1rem;
+  img {
+    margin-left: 0.5rem;
     transition: margin-left 0.4s ease-in-out;
   }
 
   &:hover {
     color: $dark-orange;
-    svg {
-      margin-left: 2rem;
+    img {
+      margin-left: 1rem;
     }
   }
 }
