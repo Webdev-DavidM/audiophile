@@ -19,8 +19,7 @@ body {
   font-size: 18px;
   background-color: $white;
   font-family: $font-family;
-  font: 400;
-  max-width: 1800px;
+  font-weight: 400;
   margin: auto;
 }
 
@@ -66,11 +65,15 @@ p {
 
 // These are global classes which can be used by any component are not part of BEM
 
+.title {
+  @include fonts(18px, 24px, 1.3px, 400);
+}
+
 .sub-title {
-  @include fonts(13px, 25px, 1px, 700);
+  @include fonts(13px, 25px, 1px, 400);
 }
 
 .overline {
   text-transform: uppercase;
-  @include fonts(14px, 19px, 10px, 700);
+  @include fonts(14px, 19px, 10px, 400);
 }

@@ -5,11 +5,12 @@ import Homepage from "./components/pages/Homepage";
 import Checkout from "./components/pages/Checkout";
 import Category from "./components/pages/Category";
 import Product from "./components/pages/Product";
-import Header from './components/Header'
+import Header from './components/Header';
 
 function App() {
   return (
     <>
+    <Header number="3"/>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
@@ -18,7 +19,6 @@ function App() {
         <Route path="/product/:slug" element={<Product />}></Route>
       </Routes>
     </BrowserRouter>
-    <Header number="3"/>
     </>
   );
 }
