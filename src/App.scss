@@ -4,6 +4,10 @@
 
 @import "./scss/defaults.scss";
 
+.App {
+  overflow-x: hidden;
+}
+
 .button {
   @include arrow-button;
 }

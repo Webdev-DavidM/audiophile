@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, BrowserRouter as Router } from 'react-router-dom'
 import '../scss/header.scss';
+import CategorySummary from "./sections-used-on-multiple-pages/CategorySummary";
 /* Note when using typescript below is the only import style which will work is below, 
 importing an image/svg as a component wont work, I also need to create a index.d.ts 
 file to include svg and jpg and any other files */
@@ -39,6 +40,7 @@ import cart from '../assets/shared/icon-cart.svg';
       <div className="header__dropdown">
         <Link to="/sign-up" className="header__drop-down-sign-up">SIGN UP</Link>
         <Link to="/register" className="header__drop-down-register">LOGIN</Link>
+        <CategorySummary />
       </div>
     </div>
     </Router>

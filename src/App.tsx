@@ -9,7 +9,7 @@ import Header from './components/Header';
 
 function App() {
   return (
-    <>
+    <div className="App">
     <Header number="3"/>
     <BrowserRouter>
       <Routes>
@@ -19,7 +19,7 @@ function App() {
         <Route path="/product/:slug" element={<Product />}></Route>
       </Routes>
     </BrowserRouter>
-    </>
+    </div>
   );
 }
 
