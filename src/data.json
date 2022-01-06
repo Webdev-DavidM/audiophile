@@ -1,19 +1,13 @@
 {
 "category-images": [
   {"category": "earphones",
-    "mobile": "/assets/category-earphones/mobile/image-yx1-earphones.jpg",
-    "tablet": "/assets/category-earphones/tablet/image-yx1-earphones.jpg",
-    "desktop": "/assets/category-earphones/desktop/image-yx1-earphones.jpg"
+    "image": "assets/shared/desktop/image-earphones.png"
   },
   {"category": "headphones",
-    "mobile":  "/assets/category-headphones/mobile/image-xx99-mark-one.jpg",
-    "tablet": "./assets/category-headphones/tablet/image-xx99-mark-one.jpg",
-    "desktop": "./assets/category-headphones/desktop/image-xx99-mark-one.jpg"
+    "image":  "/assets/shared/desktop/image-headphones.png"
   },
   {"category": "speakers",
-    "mobile": "/assets/category-speakers/mobile/image-zx9.jpg",
-    "tablet": "./assets/category-speakers/tablet/image-zx9.jpg",
-    "desktop": "./assets/category-speakers/desktop/image-zx9.jpg"
+    "image": "/assets/shared/desktop/image-speakers.png"
   }
 ],
 "products" : [

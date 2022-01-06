@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../../scss/category-summary.scss";
-import data from "../../data.json";
 import arrow from '../../assets/shared/icon-arrow-right.svg'
+import { Link } from 'react-router-dom';
+import data from '../../data.json'
 
 interface Category {
   category: string,
-  tablet: string,
-  mobile: string, 
-  desktop: string
+  image: string,
 }
 
 export default function CategorySummary() {
@@ -22,18 +21,12 @@ export default function CategorySummary() {
       {categories && categories.map((cat) => 
       <>
         <div className="category-summary__item">
-            <picture className="category-summary__image">
-            <source className="category-summary__image" srcSet={cat.tablet}
-              media="(min-width: 768px)" />
-            <source className="category-summary__image" srcSet={cat.desktop}
-              media="(min-width: 1024px)" />
-            <img className="category-summary__image" src={`${cat.mobile}`} alt="" />
-          </picture>
+            <img className="category-summary__image" src={cat.image} alt="" />
           <h6 className="category-summary__category-name">{cat.category.toUpperCase()}</h6>
-          <button className="category-summary__cta">
+          <Link to={`${cat.category}`} className="category-summary__cta">
             <span className="category-summary__cta-text">SHOP</span>
             <img className="category-summary__arrow" src={arrow} alt="" />
-          </button>
+          </Link>
         </div>
 
         </>
