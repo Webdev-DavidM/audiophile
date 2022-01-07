@@ -1,6 +1,159 @@
 @import "../App.scss";
 
 .homepage {
-  margin-top: 60px;
   width: 100vw;
+
+  &__hero {
+    width: 100%;
+    height: auto;
+  }
+
+  &__hero-image {
+    margin-top: -100px;
+
+    @include tablet {
+      margin-top: -200px;
+    }
+
+    @include desktop {
+      margin-top: 0px;
+    }
+
+    @include large-desktop {
+      margin-top: -20px;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+  }
+
+  &__hero-copy-section {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    height: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include tablet {
+      top: 30%;
+    }
+
+    @include desktop {
+      width: 40%;
+      text-align: left;
+      top: 12%;
+    }
+
+    @include large-desktop {
+      width: 40%;
+      text-align: left;
+      top: 16%;
+    }
+
+    @include very-large-desktop {
+      width: 40%;
+      text-align: left;
+      top: 22%;
+    }
+  }
+
+  &__hero-title {
+    color: $darker-grey;
+  }
+
+  &__hero-subtitle {
+    margin: 2rem 0;
+    color: $white;
+  }
+
+  &__hero-copy {
+    color: $darker-grey;
+  }
+
+  &__hero-cta {
+    @include block-button-orange;
+    width: 10rem;
+    margin: 2rem auto;
+
+    @include desktop {
+      margin: 2rem 0;
+    }
+  }
+
+  &__product-highlight {
+    background-color: $dark-orange;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+    padding: 2rem;
+
+    @include desktop {
+      margin: 3rem;
+      flex-direction: row;
+      height: 500px;
+      overflow-y: hidden;
+    }
+  }
+
+  &__product-highlight-image-container {
+    width: 300px;
+    height: auto;
+    margin: auto;
+
+    @include tablet {
+    }
+
+    @include desktop {
+      margin-top: 85px;
+      width: 600px;
+    }
+  }
+
+  &__product-highlight-image {
+    width: 100%;
+  }
+
+  &__product-highlight-copy-section {
+    text-align: center;
+    width: 80%;
+    margin-top: -40px;
+
+    @include desktop {
+      margin-top: 0;
+      text-align: left;
+      width: 50%;
+    }
+  }
+
+  &__product-highlight-copy {
+    color: $light-grey;
+    margin-bottom: 2rem;
+
+    @include desktop {
+      width: 60%;
+    }
+  }
+
+  &__product-hughlight-subtitle {
+    color: $lighest-grey;
+    margin-bottom: 2rem;
+  }
+
+  &__product-highlight-cta {
+    @include block-button-black;
+    width: 10rem;
+    margin: auto;
+
+    @include desktop {
+      margin: 0;
+    }
+  }
 }

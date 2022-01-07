@@ -28,13 +28,13 @@ export default function Product() {
 //       {categories && categories.map((cat) => 
 //       <>
 //         <div className="category-summary__item">
-//             <picture className="category-summary__image">
-//             <source className="category-summary__image" srcSet={cat.tablet}
-//               media="(min-width: 768px)" />
-//             <source className="category-summary__image" srcSet={cat.desktop}
-//               media="(min-width: 1024px)" />
-//             <img className="category-summary__image" src={`${cat.mobile}`} alt="" />
-//           </picture>
+          //   <picture className="category-summary__image">
+          //   <source className="category-summary__image" srcSet={cat.tablet}
+          //     media="(min-width: 768px)" />
+          //   <source className="category-summary__image" srcSet={cat.desktop}
+          //     media="(min-width: 1024px)" />
+          //   <img className="category-summary__image" src={`${cat.mobile}`} alt="" />
+          // </picture>
 //           <h6 className="category-summary__category-name">{cat.category.toUpperCase()}</h6>
 //           <button className="category-summary__cta">
 //             <span className="category-summary__cta-text">SHOP</span>

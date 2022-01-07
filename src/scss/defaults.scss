@@ -37,26 +37,26 @@ button {
 a {
   text-decoration: none;
   font-family: $font-family;
-  @include fonts(20px, 22px, 2px, 700);
+  @include fonts(20px, 22px, 2px, 400);
 }
 
 h1 {
-  @include fonts(56px, 58px, 2px, 700);
+  @include fonts(56px, 58px, 2px, 400);
 }
 h2 {
-  @include fonts(40px, 44px, 1.5px, 700);
+  @include fonts(40px, 44px, 1.5px, 400);
 }
 h3 {
-  @include fonts(32px, 36px, 1.15px, 700);
+  @include fonts(32px, 36px, 1.15px, 400);
 }
 h4 {
-  @include fonts(24px, 33px, 1.7px, 700);
+  @include fonts(24px, 33px, 1.7px, 400);
 }
 h5 {
-  @include fonts(24px, 33px, 1.7px, 700);
+  @include fonts(24px, 33px, 1.7px, 400);
 }
 h6 {
-  @include fonts(18px, 24px, 1.3px, 700);
+  @include fonts(18px, 24px, 1.3px, 400);
 }
 
 p {

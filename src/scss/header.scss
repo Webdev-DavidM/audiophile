@@ -160,7 +160,9 @@
 
   &__drop-down-sign-up,
   &__drop-down-register {
+    @include block-button-black;
     padding: 0.5rem;
+    margin-top: 20px;
     @include fonts(18px, 24px, 1.3px, 400);
     transition: color 0.4s ease-in-out;
 

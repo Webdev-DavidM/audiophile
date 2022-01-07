@@ -1,11 +1,18 @@
 @import "../App.scss";
 
 .category-summary {
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
   width: 100%;
+  max-width: 1400px;
+  margin: auto;
+
+  @include tablet {
+    display: flex;
+    justify-content: space-between;
+  }
 
   &__item {
-    margin: 120px 0 0 0;
+    margin: 100px 0 0 0;
     background-color: $light-grey;
     border-radius: 8px;
     height: 200px;
@@ -17,6 +24,14 @@
 
     &:first-child {
       margin-top: 60px;
+    }
+
+    @include tablet {
+      width: 30%;
+
+      &:first-child {
+        margin-top: 100px;
+      }
     }
   }
 

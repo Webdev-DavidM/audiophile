@@ -63,7 +63,7 @@
   cursor: pointer;
   background-color: $black;
   padding: 0.5rem;
-  height: 3rem;
+  height: 2.5rem;
   display: flex;
   border: 2px solid $black;
   align-items: center;
@@ -91,6 +91,12 @@
 
 @mixin large-desktop {
   @media screen and (min-width: $large-desktop) {
+    @content;
+  }
+}
+
+@mixin very-large-desktop {
+  @media screen and (min-width: $very-large-desktop) {
     @content;
   }
 }
