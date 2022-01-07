@@ -75,6 +75,25 @@
   }
 }
 
+@mixin block-button-black-outline() {
+  text-transform: uppercase;
+  @include fonts(15px, 25px, 0px, 400);
+  width: 10rem;
+  color: $black;
+  cursor: pointer;
+  padding: 0.5rem;
+  height: 2.5rem;
+  display: flex;
+  border: 2px solid $black;
+  align-items: center;
+  justify-content: space-evenly;
+  transition: all 0.4s ease-in-out;
+  &:hover {
+    background-color: $black;
+    color: $white;
+  }
+}
+
 /* Responsive media query mixins */
 
 @mixin tablet {

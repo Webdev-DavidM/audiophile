@@ -156,4 +156,54 @@
       margin: 0;
     }
   }
+
+  &__alternating-category-one {
+    margin: 2rem;
+    padding: 2rem;
+    background: url("../../public/assets/home/mobile/image-speaker-zx7.jpg")
+      no-repeat;
+    background-size: cover;
+    background-position: right;
+    height: 500px;
+    display: flex;
+    width: calc(100% -2rem);
+    align-items: center;
+
+    @include tablet {
+      background: url("../../public/assets/home/tablet/image-speaker-zx7.jpg")
+        no-repeat;
+      background-size: cover;
+      background-position: center;
+      height: 450px;
+      margin: 3rem;
+      padding: 2rem 5rem;
+    }
+
+    @include desktop {
+      background: url("../../public/assets/home/desktop/image-speaker-zx7.jpg")
+        no-repeat;
+      background-size: cover;
+      background-position: center;
+      height: 450px;
+      margin: 3rem;
+      padding: 2rem 10rem;
+    }
+
+    @include large-desktop {
+      padding: 2rem 15rem;
+    }
+
+    @include very-large-desktop {
+      padding: 2rem 20rem;
+    }
+  }
+
+  &__alternating-category-title {
+    margin: 2rem 0;
+  }
+
+  &__alternating-category-cta {
+    @include block-button-black-outline;
+    margin: 2rem 0;
+  }
 }
