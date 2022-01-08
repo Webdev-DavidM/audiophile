@@ -1,35 +1,52 @@
-import React from 'react'
-import '../../../scss/homepage.scss'
-import  {Link} from 'react-router-dom'
-
+import React from "react";
+import "../../../scss/homepage.scss";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
     <div className="homepage__hero">
       <div className="homepage__hero-image">
-      <picture className="homepage__image">
-            <source className="homepage__image" srcSet="/assets/home/tablet/image-header.jpg"
-              media="(min-width: 768px, max-width: 1023px)" />
-            <source className="homepage__image" srcSet="/assets/home/desktop/image-hero.jpg"
-              media="(min-width: 1024px)" />
-            <img className="homepage__image" src="/assets/home/mobile/image-header.jpg" alt="" />
-          </picture>
+        <picture className="homepage__image">
+          <source
+            className="homepage__image"
+            srcSet="/assets/home/tablet/image-header.jpg"
+            media="(min-width: 768px, max-width: 1023px)"
+          />
+          <source
+            className="homepage__image"
+            srcSet="/assets/home/desktop/image-hero.jpg"
+            media="(min-width: 1024px)"
+          />
+          <img
+            className="homepage__image"
+            src="/assets/home/mobile/image-header.jpg"
+            alt=""
+          />
+        </picture>
       </div>
       <div className="homepage__hero-copy-section">
         <h6 className="homepage__hero-title">NEW PRODUCT</h6>
         <h2 className="homepage__hero-subtitle">XX99 MARK 11 HEADPHONE</h2>
-        <p className="homepage__hero-copy"> Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.</p>
-        <Link className="homepage__hero-cta" to="/product/xx99-mark-one-headphones">SEE PRODUCT</Link>
+        <p className="homepage__hero-copy">
+          {" "}
+          Experience natural, lifelike audio and exceptional build quality made
+          for the passionate music enthusiast.
+        </p>
+        <Link
+          className="homepage__hero-cta"
+          to="/product/xx99-mark-one-headphones"
+        >
+          SEE PRODUCT
+        </Link>
       </div>
     </div>
-  )
+  );
 }
-
 
 // interface Category {
 //   category: string,
 //   tablet: string,
-//   mobile: string, 
+//   mobile: string,
 //   desktop: string
 // }
 
@@ -44,16 +61,16 @@ export default function Hero() {
 //   }, []);
 
 //   return <div className="category-summary">
-//       {categories && categories.map((cat) => 
+//       {categories && categories.map((cat) =>
 //       <>
 //         <div className="category-summary__item">
-          //   <picture className="category-summary__image">
-          //   <source className="category-summary__image" srcSet={cat.tablet}
-          //     media="(min-width: 768px)" />
-          //   <source className="category-summary__image" srcSet={cat.desktop}
-          //     media="(min-width: 1024px)" />
-          //   <img className="category-summary__image" src={`${cat.mobile}`} alt="" />
-          // </picture>
+//   <picture className="category-summary__image">
+//   <source className="category-summary__image" srcSet={cat.tablet}
+//     media="(min-width: 768px)" />
+//   <source className="category-summary__image" srcSet={cat.desktop}
+//     media="(min-width: 1024px)" />
+//   <img className="category-summary__image" src={`${cat.mobile}`} alt="" />
+// </picture>
 //           <h6 className="category-summary__category-name">{cat.category.toUpperCase()}</h6>
 //           <button className="category-summary__cta">
 //             <span className="category-summary__cta-text">SHOP</span>

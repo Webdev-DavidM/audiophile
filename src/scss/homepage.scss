@@ -114,9 +114,6 @@
     height: auto;
     margin: auto;
 
-    @include tablet {
-    }
-
     @include desktop {
       margin-top: 85px;
       width: 600px;
@@ -215,7 +212,6 @@
   }
 
   &__alternating-category-two {
-    height: 500px;
     border-radius: 10px;
 
     @include tablet {
@@ -238,6 +234,7 @@
     @include tablet {
       width: 49%;
       margin: 0;
+      height: 500px;
     }
   }
 
@@ -254,6 +251,7 @@
     @include tablet {
       width: 49%;
       margin: 0;
+      height: 500px;
     }
   }
 }
