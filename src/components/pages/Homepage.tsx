@@ -10,9 +10,11 @@ import Description from '../page-sections/homepage/Description'
 export default function Homepage() {
   return <div className="homepage">
     <Hero />
-    <CategorySummary />
-    <ProductHighlight />
-    <AlternatingCategories />
-    <Description />
+     <div className="layout-block layout-block--max-width">
+      <CategorySummary />
+      <ProductHighlight />
+      <AlternatingCategories />
+      <Description />
+     </div>
   </div>;
 }

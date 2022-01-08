@@ -3,6 +3,11 @@
 .homepage {
   width: 100vw;
 
+  &__section {
+    max-width: 1400px;
+    margin: auto;
+  }
+
   &__hero {
     width: 100%;
     height: auto;
@@ -94,6 +99,7 @@
     justify-content: center;
     margin: 2rem;
     padding: 2rem;
+    border-radius: 10px;
 
     @include desktop {
       margin: 3rem;
@@ -158,6 +164,7 @@
   }
 
   &__alternating-category-one {
+    border-radius: 10px;
     margin: 2rem;
     padding: 2rem;
     background: url("../../public/assets/home/mobile/image-speaker-zx7.jpg")
@@ -205,5 +212,48 @@
   &__alternating-category-cta {
     @include block-button-black-outline;
     margin: 2rem 0;
+  }
+
+  &__alternating-category-two {
+    height: 500px;
+    border-radius: 10px;
+
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 3rem;
+    }
+  }
+
+  &__alternating-category-copy-container {
+    margin: 2rem;
+    order: 1;
+    height: 250px;
+    background-color: $light-grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+
+    @include tablet {
+      width: 49%;
+      margin: 0;
+    }
+  }
+
+  &__alternating-category-two-image {
+    background: url("../../public/assets/home/desktop/image-earphones-yx1.jpg")
+      no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    border-radius: 10px;
+    margin: 2rem;
+    order: 0;
+
+    @include tablet {
+      width: 49%;
+      margin: 0;
+    }
   }
 }

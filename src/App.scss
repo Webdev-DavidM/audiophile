@@ -11,3 +11,12 @@
 .button {
   @include arrow-button;
 }
+
+.layout-block {
+  margin: 40px 0;
+
+  &--max-width {
+    max-width: 1400px;
+    margin: 40px auto;
+  }
+}
