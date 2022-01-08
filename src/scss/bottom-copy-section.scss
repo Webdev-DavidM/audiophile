@@ -1,0 +1,25 @@
+@import "../App.scss";
+
+.bottom-copy-section {
+  margin-top: 80px;
+  margin: 2rem;
+
+  &__image {
+    background: url("../../public//assets/shared/mobile/image-best-gear.jpg")
+      no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    border-radius: 10px;
+
+    @include tablet {
+      background: url("../../public//assets/shared/tablet/image-best-gear.jpg")
+        no-repeat;
+    }
+
+    @include desktop {
+      background: url("../../public//assets/shared/desktop/image-best-gear.jpg")
+        no-repeat;
+    }
+  }
+}
