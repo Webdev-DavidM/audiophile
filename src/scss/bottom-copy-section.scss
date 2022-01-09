@@ -4,6 +4,16 @@
   margin-top: 80px;
   margin: 2rem;
 
+  @include tablet {
+    margin: 3rem;
+  }
+
+  @include desktop {
+    display: flex;
+    justify-content: space-between;
+    height: 500px;
+  }
+
   &__image {
     background: url("../../public//assets/shared/mobile/image-best-gear.jpg")
       no-repeat;
@@ -18,8 +28,34 @@
     }
 
     @include desktop {
-      background: url("../../public//assets/shared/desktop/image-best-gear.jpg")
+      background: url("../../public//assets/shared/mobile/image-best-gear.jpg")
         no-repeat;
+      order: 1;
+      width: 49%;
     }
+  }
+
+  &__copy-section {
+    text-align: center;
+    padding: 2rem;
+
+    @include tablet {
+      padding: 3rem;
+    }
+
+    @include desktop {
+      order: 0;
+      width: 49%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+      padding: 6rem;
+    }
+  }
+
+  &__copy {
+    margin: 2rem 0;
+    color: $darker-grey;
   }
 }
