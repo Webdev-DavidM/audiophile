@@ -85,7 +85,9 @@
     }
 
     @include desktop {
-      margin-left: auto;
+      &:first-child {
+        margin-left: auto;
+      }
     }
 
     &:after {

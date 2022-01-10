@@ -23,12 +23,12 @@
     border-radius: 10px;
 
     @include tablet {
-      background: url("../../public//assets/shared/tablet/image-best-gear.jpg")
+      background: url("../../public/assets/shared/tablet/image-best-gear.jpg")
         no-repeat;
     }
 
     @include desktop {
-      background: url("../../public//assets/shared/mobile/image-best-gear.jpg")
+      background: url("../../public/assets/shared/mobile/image-best-gear.jpg")
         no-repeat;
       order: 1;
       width: 49%;
