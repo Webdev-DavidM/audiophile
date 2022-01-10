@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, BrowserRouter as Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../scss/header.scss";
 import CategorySummary from "./sections-used-on-multiple-pages/CategorySummary";
 /* Note when using typescript below is the only import style which will work is below, 
@@ -16,54 +16,54 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <Router>
-        <div data-test="header" className={headerMenu}>
-          <div
-            data-test="hamburger"
-            className="header__hamburger"
-            onClick={() => setShowMenu(!showMenu)}
-          >
-            <img src={hamburger} alt="hamburger menu" />
-          </div>
-          <div className="header__title">
-            <img src={logo} alt="audiophile logo" />
-          </div>
-          <ul className="header__nav-links">
-            <Link to="/home" className="header__link">
-              HOME
-            </Link>
-            <Link to="/headphones" className="header__link">
-              HEADPHONES
-            </Link>
-            <Link to="/speakers" className="header__link">
-              SPEAKERS
-            </Link>
-            <Link to="/earphones" className="header__link">
-              EARPHONES
-            </Link>
-          </ul>
-          <div className="header__login-and-register">
-            <Link to="/sign-up" className="header__sign-up">
-              SIGN UP
-            </Link>
-            <Link to="/register" className="header__register">
-              LOGIN
-            </Link>
-          </div>
-          <div className="header__cart">
-            <img className="header__cart-svg" src={cart} alt="cart" />
-          </div>
-          <div className="header__dropdown">
-            <Link to="/sign-up" className="header__drop-down-sign-up">
-              SIGN UP
-            </Link>
-            <Link to="/register" className="header__drop-down-register">
-              LOGIN
-            </Link>
-            <CategorySummary />
-          </div>
+      <div data-test="header" className={headerMenu}>
+        <div
+          data-test="hamburger"
+          className="header__hamburger"
+          onClick={() => setShowMenu(!showMenu)}
+        >
+          <img src={hamburger} alt="hamburger menu" />
         </div>
-      </Router>
+        <div className="header__title">
+          <Link to="/">
+            <img src={logo} alt="audiophile logo" />
+          </Link>
+        </div>
+        <ul className="header__nav-links">
+          <Link to="/" className="header__link">
+            HOME
+          </Link>
+          <Link to="/category/headphones" className="header__link">
+            HEADPHONES
+          </Link>
+          <Link to="category/speakers" className="header__link">
+            SPEAKERS
+          </Link>
+          <Link to="/category/earphones" className="header__link">
+            EARPHONES
+          </Link>
+        </ul>
+        <div className="header__login-and-register">
+          <Link to="/sign-up" className="header__sign-up">
+            SIGN UP
+          </Link>
+          <Link to="/register" className="header__register">
+            LOGIN
+          </Link>
+        </div>
+        <div className="header__cart">
+          <img className="header__cart-svg" src={cart} alt="cart" />
+        </div>
+        <div className="header__dropdown">
+          <Link to="/sign-up" className="header__drop-down-sign-up">
+            SIGN UP
+          </Link>
+          <Link to="/register" className="header__drop-down-register">
+            LOGIN
+          </Link>
+          <CategorySummary />
+        </div>
+      </div>
     </>
   );
 };
