@@ -24,22 +24,8 @@ describe("renders the correct items to the screen", () => {
     console.log(category.text());
     expect(category.text()).toBe("earphones");
   });
+
+  // Where are the props coming from?
+
+  test("When a product is displayed it shows an image, title, description and button", () => {});
 });
-
-/* 
-
-
-
-
-
-I can test this by mocking the use params hook and giving it the value of earphones as an example
-
-The category displays the right amount of products
-
-
-
-When a product is displayed it shows an image, title, description and button
-
-
-
-*/
