@@ -1,0 +1,58 @@
+@import "../App.scss";
+
+.category {
+  &__hero {
+    background-color: $black;
+    height: 200px;
+    position: relative;
+  }
+
+  &__hero-title {
+    color: $white;
+    position: absolute;
+    width: 100%;
+
+    text-align: center;
+    bottom: 20px;
+  }
+
+  &__product {
+    margin: 2rem;
+    text-align:center;
+  }
+
+  &__new-product{
+    color: $dark-orange;
+    margin: 1rem 0;
+  }
+
+  &__image-container {
+    width: 100%;
+    height:auto;
+    margin: 8rem 0 2rem;
+  }
+
+  &__image {
+    width: 100%;
+    height:auto;
+  }
+
+  &__title {
+
+  }
+
+  &__copy {
+    color: $darker-grey;
+    margin: 1rem 0;
+  }
+
+  &__product-cta {
+    @include block-button-orange;
+    width: 10rem;
+    margin: 2rem auto;
+
+    @include desktop {
+      margin: 2rem 0;
+    }
+  }
+}

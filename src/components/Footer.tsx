@@ -19,7 +19,7 @@ export default function Footer() {
         <Link to="category/speakers" className="footer__link">
           SPEAKERS
         </Link>
-        <Link to="/earphones" className="footer__link">
+        <Link to="category/earphones" className="footer__link">
           EARPHONES
         </Link>
       </ul>

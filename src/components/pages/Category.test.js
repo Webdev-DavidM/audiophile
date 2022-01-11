@@ -3,6 +3,7 @@ import Enzyme, { mount } from "enzyme";
 import { MemoryRouter } from "react-router-dom";
 import { locateByTestAttr } from "../../test/testUtils";
 import App from "../../App";
+import data from "../../data.json";
 
 //i use one describe here because none of the data will conflict as I just testing
 // earphones //
@@ -14,18 +15,25 @@ describe("renders the correct items to the screen", () => {
   beforeEach(() => {
     wrapper = mount(
       <MemoryRouter initialEntries={["/category/earphones"]}>
-        <App />
+        <App productData={data.products} />
       </MemoryRouter>
     );
   });
 
-  test("When a category is shown in the url, the correct category items are shown", () => {
-    let category = locateByTestAttr(wrapper, "category-title");
+  test("When a category is shown in the url, the correct category name is shown in the header section", () => {
+    let category = locateByTestAttr(wrapper, "category-header");
     console.log(category.text());
-    expect(category.text()).toBe("earphones");
+    expect(category.text()).toBe("EARPHONES");
   });
 
-  // Where are the props coming from?
-
-  test("When a product is displayed it shows an image, title, description and button", () => {});
+  test("When a product from the category is displayed is displayed it shows an image, title, description and button", () => {
+    let categoryImage = locateByTestAttr(wrapper, "category-image");
+    expect(categoryImage.length).toBeGreaterThan(0);
+    let categoryTitle = locateByTestAttr(wrapper, "category-title");
+    expect(categoryTitle.length).toBeGreaterThan(0);
+    let categoryCopy = locateByTestAttr(wrapper, "category-copy");
+    expect(categoryCopy.length).toBeGreaterThan(0);
+    let categoryCTA = locateByTestAttr(wrapper, "category-cta");
+    expect(categoryCTA.length).toBeGreaterThan(0);
+  });
 });
