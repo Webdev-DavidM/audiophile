@@ -9,11 +9,7 @@ interface Category {
   image: string;
 }
 
-interface Props {
-  showMenu?: (value: boolean) => void;
-}
-
-export default function CategorySummary({ showMenu }: Props) {
+export default function CategorySummary() {
   const [categories, setCategories] = useState<Category[] | []>([]);
 
   useEffect(() => {

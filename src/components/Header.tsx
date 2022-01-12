@@ -1,31 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../scss/header.scss";
-import CategorySummary from "./sections-used-on-multiple-pages/CategorySummary";
+
 /* Note when using typescript below is the only import style which will work is below, 
 importing an image/svg as a component wont work, I also need to create a index.d.ts 
 file to include svg and jpg and any other files */
 import hamburger from "../assets/shared/icon-hamburger.svg";
 import logo from "../assets/shared/logo.svg";
 import cart from "../assets/shared/icon-cart.svg";
+import data from "../data.json";
+import arrow from "../assets/shared/icon-arrow-right.svg";
+
+interface Category {
+  category: string;
+  image: string;
+}
 
 const Header: React.FC = () => {
   const [showMenu, setShowMenu] = React.useState(false);
+  const [categories, setCategories] = useState<Category[] | []>([]);
+
+  useEffect(() => {
+    let cats = JSON.parse(JSON.stringify(data));
+    setCategories(cats["category-images"]);
+  }, []);
 
   let headerMenu = showMenu ? `header header--open` : `header`;
 
+  let dropdown = showMenu
+    ? `header__dropdown`
+    : `header__dropdown header__dropdown--hidden`;
+
+  const closeDropDown = () => {
+    setShowMenu(!showMenu);
+  };
+
   return (
     <>
-      <div data-test="header" className={headerMenu}>
+      <div id="top" data-test="header" className={headerMenu}>
         <div
           data-test="hamburger"
           className="header__hamburger"
-          onClick={() => setShowMenu(!showMenu)}
+          onClick={() => closeDropDown()}
         >
           <img src={hamburger} alt="hamburger menu" />
         </div>
         <div className="header__title">
-          <Link to="/">
+          <Link onClick={() => setShowMenu(false)} to="/">
             <img src={logo} alt="audiophile logo" />
           </Link>
         </div>
@@ -54,14 +75,42 @@ const Header: React.FC = () => {
         <div className="header__cart">
           <img className="header__cart-svg" src={cart} alt="cart" />
         </div>
-        <div className="header__dropdown">
+        <div className={dropdown}>
           <Link to="/sign-up" className="header__drop-down-sign-up">
             SIGN UP
           </Link>
           <Link to="/register" className="header__drop-down-register">
             LOGIN
           </Link>
-          <CategorySummary />
+          <div className="category-summary">
+            {categories &&
+              categories.map((cat) => (
+                <>
+                  <div className="category-summary__item">
+                    <img
+                      className="category-summary__image"
+                      src={cat.image}
+                      alt=""
+                    />
+                    <h6 className="category-summary__category-name">
+                      {cat.category.toUpperCase()}
+                    </h6>
+                    <Link
+                      onClick={() => setShowMenu(false)}
+                      to={`/category/${cat.category}`}
+                      className="category-summary__cta"
+                    >
+                      <span className="category-summary__cta-text">SHOP</span>
+                      <img
+                        className="category-summary__arrow"
+                        src={arrow}
+                        alt=""
+                      />
+                    </Link>
+                  </div>
+                </>
+              ))}
+          </div>
         </div>
       </div>
     </>
