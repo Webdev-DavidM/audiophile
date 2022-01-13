@@ -2,16 +2,17 @@
 
 .bottom-copy-section {
   margin-top: 80px;
-  margin: 2rem;
+  margin: 2rem auto;
 
   @include tablet {
-    margin: 3rem;
+    margin: 6rem auto;
   }
 
   @include desktop {
     display: flex;
     justify-content: space-between;
     height: 500px;
+    max-width: 1300px;
   }
 
   &__image {
@@ -21,10 +22,12 @@
     background-position: center;
     height: 500px;
     border-radius: 10px;
+    margin: 3rem;
 
     @include tablet {
       background: url("../../public/assets/shared/tablet/image-best-gear.jpg")
         no-repeat;
+      background-position: right;
     }
 
     @include desktop {

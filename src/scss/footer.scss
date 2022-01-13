@@ -106,6 +106,8 @@
 
     &:hover {
       color: $dark-orange;
+      cursor: pointer;
+
       &:after {
         transform: scaleX(1);
       }

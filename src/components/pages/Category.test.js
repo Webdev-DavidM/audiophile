@@ -22,7 +22,6 @@ describe("renders the correct items to the screen", () => {
 
   test("When a category is shown in the url, the correct category name is shown in the header section", () => {
     let category = locateByTestAttr(wrapper, "category-header");
-    console.log(category.text());
     expect(category.text()).toBe("EARPHONES");
   });
 

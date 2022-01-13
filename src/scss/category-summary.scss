@@ -4,7 +4,10 @@
   padding: 0 3rem 0 3rem;
   width: 100%;
   max-width: 1400px;
-  margin: auto;
+
+  @include desktop {
+    margin: auto;
+  }
 
   @include tablet {
     display: flex;

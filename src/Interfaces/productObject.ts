@@ -17,7 +17,7 @@ export type ProductsObject = {
   price: number;
   description: string;
   features: string;
-  includes: {
+  items: {
     quantity: number;
     item: string;
   }[];

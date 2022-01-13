@@ -20,22 +20,20 @@ export default function CategorySummary() {
   return (
     <div className="category-summary">
       {categories &&
-        categories.map((cat) => (
-          <>
-            <div className="category-summary__item">
-              <img className="category-summary__image" src={cat.image} alt="" />
-              <h6 className="category-summary__category-name">
-                {cat.category.toUpperCase()}
-              </h6>
-              <Link
-                to={`/category/${cat.category}`}
-                className="category-summary__cta"
-              >
-                <span className="category-summary__cta-text">SHOP</span>
-                <img className="category-summary__arrow" src={arrow} alt="" />
-              </Link>
-            </div>
-          </>
+        categories.map((cat, index) => (
+          <div key={index} className="category-summary__item">
+            <img className="category-summary__image" src={cat.image} alt="" />
+            <h6 className="category-summary__category-name">
+              {cat.category.toUpperCase()}
+            </h6>
+            <Link
+              to={`/category/${cat.category}`}
+              className="category-summary__cta"
+            >
+              <span className="category-summary__cta-text">SHOP</span>
+              <img className="category-summary__arrow" src={arrow} alt="" />
+            </Link>
+          </div>
         ))}
     </div>
   );

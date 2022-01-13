@@ -84,31 +84,29 @@ const Header: React.FC = () => {
           </Link>
           <div className="category-summary">
             {categories &&
-              categories.map((cat) => (
-                <>
-                  <div className="category-summary__item">
+              categories.map((cat, index) => (
+                <div key={index} className="category-summary__item">
+                  <img
+                    className="category-summary__image"
+                    src={cat.image}
+                    alt=""
+                  />
+                  <h6 className="category-summary__category-name">
+                    {cat.category.toUpperCase()}
+                  </h6>
+                  <Link
+                    onClick={() => setShowMenu(false)}
+                    to={`/category/${cat.category}`}
+                    className="category-summary__cta"
+                  >
+                    <span className="category-summary__cta-text">SHOP</span>
                     <img
-                      className="category-summary__image"
-                      src={cat.image}
+                      className="category-summary__arrow"
+                      src={arrow}
                       alt=""
                     />
-                    <h6 className="category-summary__category-name">
-                      {cat.category.toUpperCase()}
-                    </h6>
-                    <Link
-                      onClick={() => setShowMenu(false)}
-                      to={`/category/${cat.category}`}
-                      className="category-summary__cta"
-                    >
-                      <span className="category-summary__cta-text">SHOP</span>
-                      <img
-                        className="category-summary__arrow"
-                        src={arrow}
-                        alt=""
-                      />
-                    </Link>
-                  </div>
-                </>
+                  </Link>
+                </div>
               ))}
           </div>
         </div>

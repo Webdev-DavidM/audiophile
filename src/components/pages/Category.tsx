@@ -29,7 +29,7 @@ const Category = (props: { productData: ProductsObject[] }) => {
 
         {products.length > 0 &&
           products.map((product, index) => (
-            <div className="category__product">
+            <div key={index} className="category__product">
               <div
                 data-test="category-image"
                 className="category__image-container"
@@ -49,7 +49,7 @@ const Category = (props: { productData: ProductsObject[] }) => {
                 </picture>
               </div>
               <div className="category__copy-container">
-                {index === 0 && (
+                {product.new && (
                   <h6 className="category__new-product">NEW PRODUCT</h6>
                 )}
                 <h3 data-test="category-title" className="category__title">

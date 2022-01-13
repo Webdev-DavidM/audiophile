@@ -20,7 +20,10 @@ function App() {
           path="/category/:category"
           element={<Category productData={data.products} />}
         />
-        <Route path="/product/:slug" element={<Product />} />
+        <Route
+          path="/product/:slug"
+          element={<Product productData={data.products} />}
+        />
       </Routes>
       <Footer />
     </div>
