@@ -1,23 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../../scss/productpage.scss";
 import CategorySummary from "../sections-used-on-multiple-pages/CategorySummary";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { ProductsObject } from "../../Interfaces/productObject";
+import Carousel from "../sections-used-on-multiple-pages/Carousel";
 
 export default function Product(props: { productData: ProductsObject[] }) {
   let paramsProduct = useParams();
   let navigate = useNavigate();
-
-  let [product, setProduct] = useState<ProductsObject | undefined>(undefined);
+  let [quantity, setQuantity] = React.useState<Number>(1);
+  let [product, setProduct] = React.useState<ProductsObject | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     let { productData } = props;
     let chosenProduct = productData.filter(
       (product) => product.slug === paramsProduct.slug
     );
-    console.log(chosenProduct.includes);
     setProduct(chosenProduct[0]);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   }, [paramsProduct, props]);
 
   return (
@@ -34,22 +42,21 @@ export default function Product(props: { productData: ProductsObject[] }) {
         className="product__product-details"
       >
         <div className="product__image-container">
-          <picture>
-            <source
-              className="product__image"
-              media="(min-width: 768px, max-width: 1023px)"
-              srcSet={product && product.image.tablet}
-            />
-            <source
-              className="product__image"
-              media="(min-width: 1024px )"
-              srcSet={product && product.image.desktop}
-            />
-            <img
-              className="product__image"
-              src={product && product.image.mobile}
-            />
-          </picture>
+          {product !== undefined && (
+            <picture>
+              <source
+                className="product__image"
+                media="(min-width: 768px, max-width: 1023px)"
+                srcSet={`${product.image.tablet}`}
+              />
+              <source
+                className="product__image"
+                media="(min-width: 1024px )"
+                srcSet={`${product.image.desktop}`}
+              />
+              <img className="product__image" src={`${product.image.mobile}`} />
+            </picture>
+          )}
         </div>
         <div className="product__copy-container">
           {product && product.new && (
@@ -66,11 +73,17 @@ export default function Product(props: { productData: ProductsObject[] }) {
             £ {product && product.price}
           </h3>
           <div className="product__buttons-section">
-            <button className="product__amount-button-section">
-              <span className="product__minus-button">-</span>
+            <div className="product__amount-button-section">
+              <button
+                data-test="minus-button"
+                disabled={quantity === 1}
+                className="product__minus-button"
+              >
+                -
+              </button>
               <span className="product__amount">1</span>
-              <span className="product__plus-button">+</span>
-            </button>
+              <button className="product__plus-button">+</button>
+            </div>
             <button data-test="product-cta" className="product__product-cta">
               ADD TO CART
             </button>
@@ -171,6 +184,12 @@ export default function Product(props: { productData: ProductsObject[] }) {
             />
           </picture>
         </div>
+      </div>
+      <h3 className="product__title product__title--center">
+        YOU MAY ALSO LIKE
+      </h3>
+      <div className="product__carousel">
+        {product && <Carousel products={product.others} />}
       </div>
       <CategorySummary />
       <div

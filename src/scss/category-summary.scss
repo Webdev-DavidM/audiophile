@@ -1,9 +1,9 @@
 @import "../App.scss";
 
 .category-summary {
-  padding: 0 3rem 0 3rem;
+  padding: 0 3rem 3rem 3rem;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
 
   @include desktop {
     margin: auto;

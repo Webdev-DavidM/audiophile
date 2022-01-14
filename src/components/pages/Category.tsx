@@ -16,6 +16,11 @@ const Category = (props: { productData: ProductsObject[] }) => {
       (product) => product.category === cat.category
     );
     setProducts(chosenProducts);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   }, [cat.category, productData]);
 
   return (
