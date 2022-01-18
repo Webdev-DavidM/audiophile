@@ -6,34 +6,40 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ProductsObject } from "../../Interfaces/productObject";
 import Carousel from "../sections-used-on-multiple-pages/Carousel";
+import ImageGallery from "../page-sections/product/ImageGallery";
 
 export default function Product(props: { productData: ProductsObject[] }) {
   let paramsProduct = useParams();
   let navigate = useNavigate();
-  let [quantity, setQuantity] = React.useState<Number>(1);
+  let [quantity, setQuantity] = React.useState<number>(1);
   let [product, setProduct] = React.useState<ProductsObject | undefined>(
     undefined
   );
 
   useEffect(() => {
     let { productData } = props;
+
     let chosenProduct = productData.filter(
       (product) => product.slug === paramsProduct.slug
     );
     setProduct(chosenProduct[0]);
+  }, [paramsProduct, props]);
+
+  const goBack = () => {
     window.scroll({
       top: 0,
       left: 0,
       behavior: "smooth",
     });
-  }, [paramsProduct, props]);
+    navigate(-1);
+  };
 
   return (
     <div className="product">
       <span
         data-test="go-back-section"
         className="product__go-back-button"
-        onClick={() => navigate(-1)}
+        onClick={() => goBack()}
       >
         GO BACK
       </span>
@@ -76,13 +82,23 @@ export default function Product(props: { productData: ProductsObject[] }) {
             <div className="product__amount-button-section">
               <button
                 data-test="minus-button"
-                disabled={quantity === 1}
+                // disabled={quantity === 1}
                 className="product__minus-button"
               >
                 -
               </button>
-              <span className="product__amount">1</span>
-              <button className="product__plus-button">+</button>
+              <span data-test="quantity" className="product__amount">
+                {quantity}
+              </span>
+              <button
+                data-testid="plus"
+                onClick={() =>
+                  setQuantity((PrevQuantity) => (PrevQuantity += 1))
+                }
+                className="product__plus-button"
+              >
+                +s
+              </button>
             </div>
             <button data-test="product-cta" className="product__product-cta">
               ADD TO CART
@@ -125,66 +141,8 @@ export default function Product(props: { productData: ProductsObject[] }) {
           </div>
         </div>
       </div>
+      {product && <ImageGallery imageGallery={product.gallery} />}
 
-      <div
-        data-test="images-section"
-        className="product__image-gallery-section"
-      >
-        <div className="product__gallery-image-container">
-          <picture className="product__gallery-image">
-            <source
-              className="product__gallery-image"
-              media="(min-width: 768px, max-width: 1023px)"
-              srcSet={product && product.gallery.first.tablet}
-            />
-            <source
-              className="product__gallery-image"
-              media="(min-width: 1024px )"
-              srcSet={product && product.gallery.first.desktop}
-            />
-            <img
-              className="product__gallery-image"
-              src={product && product.gallery.first.tablet}
-            />
-          </picture>
-        </div>
-        <div className="product__gallery-image-container">
-          <picture className="product__gallery-image product__gallery-image">
-            <source
-              className="product__gallery-image"
-              media="(min-width: 768px, max-width: 1023px)"
-              srcSet={product && product.gallery.second.tablet}
-            />
-            <source
-              className="product__gallery-image"
-              media="(min-width: 1024px )"
-              srcSet={product && product.gallery.second.desktop}
-            />
-            <img
-              className="product__gallery-image"
-              src={product && product.gallery.second.tablet}
-            />
-          </picture>
-        </div>
-        <div className="product__gallery-image-container product__gallery-image-container--larger-image">
-          <picture className="product__gallery-image">
-            <source
-              className="product__gallery-image"
-              media="(min-width: 768px, max-width: 1023px)"
-              srcSet={product && product.gallery.third.tablet}
-            />
-            <source
-              className="product__gallery-image"
-              media="(min-width: 1024px )"
-              srcSet={product && product.gallery.third.desktop}
-            />
-            <img
-              className="product__gallery-image"
-              src={product && product.gallery.third.tablet}
-            />
-          </picture>
-        </div>
-      </div>
       <h3 className="product__title product__title--center">
         YOU MAY ALSO LIKE
       </h3>

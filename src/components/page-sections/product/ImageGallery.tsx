@@ -1,0 +1,81 @@
+import React from "react";
+
+interface ImageGallery {
+  first: {
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
+  second: {
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
+  third: {
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
+}
+
+export default function ImageGallery(props: { imageGallery: ImageGallery }) {
+  const { imageGallery } = props;
+  return (
+    <div data-test="images-section" className="product__image-gallery-section">
+      <div className="product__gallery-image-container">
+        <picture className="product__gallery-image">
+          <source
+            className="product__gallery-image"
+            media="(min-width: 768px, max-width: 1023px)"
+            srcSet={imageGallery && imageGallery.first.tablet}
+          />
+          <source
+            className="product__gallery-image"
+            media="(min-width: 1024px )"
+            srcSet={imageGallery.first.desktop}
+          />
+          <img
+            className="product__gallery-image"
+            src={imageGallery.first.tablet}
+          />
+        </picture>
+      </div>
+      <div className="product__gallery-image-container">
+        <picture className="product__gallery-image product__gallery-image">
+          <source
+            className="product__gallery-image"
+            media="(min-width: 768px, max-width: 1023px)"
+            srcSet={imageGallery.second.tablet}
+          />
+          <source
+            className="product__gallery-image"
+            media="(min-width: 1024px )"
+            srcSet={imageGallery.second.desktop}
+          />
+          <img
+            className="product__gallery-image"
+            src={imageGallery.second.tablet}
+          />
+        </picture>
+      </div>
+      <div className="product__gallery-image-container product__gallery-image-container--larger-image">
+        <picture className="product__gallery-image">
+          <source
+            className="product__gallery-image"
+            media="(min-width: 768px, max-width: 1023px)"
+            srcSet={imageGallery.third.tablet}
+          />
+          <source
+            className="product__gallery-image"
+            media="(min-width: 1024px )"
+            srcSet={imageGallery.third.desktop}
+          />
+          <img
+            className="product__gallery-image"
+            src={imageGallery.third.tablet}
+          />
+        </picture>
+      </div>
+    </div>
+  );
+}

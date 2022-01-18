@@ -19,9 +19,9 @@ export default function SimpleSlider({ products }) {
         breakpoint: 1024,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           infinite: true,
-          arrows: true,
+          // arrows: true,
           centerMode: true,
         },
       },
@@ -47,8 +47,8 @@ export default function SimpleSlider({ products }) {
   };
   return (
     <Slider {...settings}>
-      {products.map((product) => (
-        <div className="product__carousel-image-container">
+      {products.map((product, index) => (
+        <div key={index} className="product__carousel-image-container">
           <picture className="product__carousel-image">
             <source
               className="product__carousel-image"
