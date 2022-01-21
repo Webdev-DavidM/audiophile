@@ -1,0 +1,48 @@
+@import "../App.scss";
+
+.cart-modal {
+  position: fixed;
+  height: 100vh;
+  z-index: 100000;
+  width: 100vw;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &--navbar-not-covered {
+    top: 60px;
+
+    @include desktop {
+      top: 100px;
+    }
+  }
+  &__container {
+    height: auto;
+    min-height: 400px;
+    max-width: 400px;
+    background-color: $white;
+    z-index: 100001;
+    width: calc(100% - 2rem);
+    margin: auto;
+    padding: 2rem;
+    border-radius: 10px;
+
+    @include tablet {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+    }
+
+    @include desktop {
+      top: 40px;
+      right: 60px;
+    }
+
+    @include large-desktop {
+      top: 60px;
+      right: 80px;
+    }
+  }
+}

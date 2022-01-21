@@ -7,6 +7,7 @@
 5. Once the user is at 0 on the itmes, the - button is disabled.
 6. If the user clicks checkout with something in the basket, they are taken to the checkout page
 7. If the user clicks the checkout and they are not signed in they are re directed to sign up page
+8. If the user clicks the cart and nothing is in there it should display a message, cart is empty
 
 */
 

@@ -9,13 +9,18 @@ export default function Hero() {
         <picture className="homepage__image">
           <source
             className="homepage__image"
-            srcSet="/assets/home/tablet/image-header.jpg"
-            media="(min-width: 768px, max-width: 1023px)"
+            srcSet="/assets/home/desktop/image-hero.jpg"
+            media="(min-width: 1024px)"
           />
           <source
             className="homepage__image"
-            srcSet="/assets/home/desktop/image-hero.jpg"
-            media="(min-width: 1024px)"
+            srcSet="/assets/home/mobile/image-header.jpg"
+            media="(max-width: 767px)"
+          />
+          <source
+            className="homepage__image"
+            srcSet="/assets/home/tablet/image-header.jpg"
+            media="(min-width: 768px, max-width: 1023px)"
           />
           <img
             className="homepage__image"

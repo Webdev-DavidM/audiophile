@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ProductsObject } from "../../Interfaces/productObject";
 import { Link } from "react-router-dom";
@@ -7,11 +7,11 @@ import CategorySummary from "../sections-used-on-multiple-pages/CategorySummary"
 import BottomCopySection from "../sections-used-on-multiple-pages/BottomCopySection";
 
 const Category = (props: { productData: ProductsObject[] }) => {
-  let [products, setProducts] = React.useState<ProductsObject[] | []>([]);
+  let [products, setProducts] = useState<ProductsObject[] | []>([]);
   let cat = useParams();
   let { productData } = props;
 
-  React.useEffect(() => {
+  useEffect(() => {
     let chosenProducts = productData.filter(
       (product) => product.category === cat.category
     );
@@ -37,13 +37,18 @@ const Category = (props: { productData: ProductsObject[] }) => {
                 <picture>
                   <source
                     className="category__image"
-                    media="(min-width: 768px, max-width: 1023px)"
-                    srcSet={product.image.tablet}
-                  />
-                  <source
-                    className="category__image"
                     media="(min-width: 1024px )"
                     srcSet={product.image.desktop}
+                  />{" "}
+                  <source
+                    className="category__image"
+                    media="(max-width: 767px )"
+                    srcSet={product.image.mobile}
+                  />{" "}
+                  <source
+                    className="category__image"
+                    media="(min-width: 768px, max-width: 1023px)"
+                    srcSet={product.image.tablet}
                   />
                   <img className="category__image" src={product.image.mobile} />
                 </picture>

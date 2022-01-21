@@ -152,6 +152,7 @@
   &__cart {
     order: 2;
     height: 1rem;
+    position: relative;
 
     &:hover {
       cursor: pointer;
@@ -159,6 +160,19 @@
 
     @include desktop {
       order: 4;
+    }
+  }
+
+  &__cart-quantity {
+    position: absolute;
+    color: red;
+    z-index: 100;
+    opacity: 0;
+
+    &--added-to-cart {
+      opacity: 1;
+      left: 9px;
+      top: -6px;
     }
   }
 

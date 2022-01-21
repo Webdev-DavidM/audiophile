@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../../scss/productpage.scss";
 import CategorySummary from "../sections-used-on-multiple-pages/CategorySummary";
@@ -7,14 +7,18 @@ import "slick-carousel/slick/slick-theme.css";
 import { ProductsObject } from "../../Interfaces/productObject";
 import Carousel from "../sections-used-on-multiple-pages/Carousel";
 import ImageGallery from "../page-sections/product/ImageGallery";
+import { CartContext } from "../../ context/cartContext";
+import BottomCopySection from "../sections-used-on-multiple-pages/BottomCopySection";
 
 export default function Product(props: { productData: ProductsObject[] }) {
+  const { items, addProduct } = useContext(CartContext);
+
   let paramsProduct = useParams();
   let navigate = useNavigate();
-  let [quantity, setQuantity] = React.useState<number>(1);
-  let [product, setProduct] = React.useState<ProductsObject | undefined>(
-    undefined
-  );
+  let [quantity, setQuantity] = useState<number>(1);
+  let [product, setProduct] = useState<ProductsObject | undefined>(undefined);
+  let [error, setError] = useState<boolean>(false);
+  let [addedToCart, setAddedToCart] = useState(false);
 
   useEffect(() => {
     let { productData } = props;
@@ -34,32 +38,59 @@ export default function Product(props: { productData: ProductsObject[] }) {
     navigate(-1);
   };
 
+  const addToCart = () => {
+    if (product) {
+      let itemToAdd = {
+        name: product.name,
+        value: product.price,
+        quantity: quantity,
+      };
+      addProduct(itemToAdd);
+      setAddedToCart(true);
+      setTimeout(() => {
+        setAddedToCart(false);
+      }, 4000);
+    }
+  };
+
+  const updateQuantity = (operator: string) => {
+    if (product && operator === "+" && quantity === product.stock) {
+      return setError(true);
+    }
+    if (operator === "+") {
+      setQuantity((PrevQuantity) => (PrevQuantity += 1));
+    } else {
+      setError(false);
+      setQuantity((PrevQuantity) => (PrevQuantity -= 1));
+    }
+  };
+
   return (
     <div className="product">
-      <span
-        data-test="go-back-section"
-        className="product__go-back-button"
-        onClick={() => goBack()}
-      >
+      <span className="product__go-back-button" onClick={() => goBack()}>
         GO BACK
       </span>
-      <div
-        data-test="product-details-section"
-        className="product__product-details"
-      >
+      <div className="product__product-details">
         <div className="product__image-container">
           {product !== undefined && (
+            //note that it will only work in this order so put the two media queries tbalet last
             <picture>
               <source
                 className="product__image"
-                media="(min-width: 768px, max-width: 1023px)"
-                srcSet={`${product.image.tablet}`}
+                media="(max-width: 767px)"
+                srcSet={`${product.image.mobile}`}
               />
               <source
                 className="product__image"
-                media="(min-width: 1024px )"
-                srcSet={`${product.image.desktop}`}
+                media="(min-width: 1024px)"
+                srcSet={`${product.image.mobile}`}
               />
+              <source
+                className="product__image"
+                media="(min-width: 768px), (max-width: 1023px)"
+                srcSet={`${product.image.tablet}`}
+              />
+
               <img className="product__image" src={`${product.image.mobile}`} />
             </picture>
           )}
@@ -69,60 +100,53 @@ export default function Product(props: { productData: ProductsObject[] }) {
             <h6 className="product__new-product">NEW PRODUCT</h6>
           )}
 
-          <h3 data-test="product-title" className="product__title">
+          <h3 className="product__title">
             {product && product.name.toUpperCase()}
           </h3>
-          <p data-test="product-copy" className="product__copy">
-            {product && product.description}
-          </p>
-          <h3 className="product__price" data-test="product-copy">
-            £ {product && product.price}
-          </h3>
+          <p className="product__copy">{product && product.description}</p>
+          <h3 className="product__price">£ {product && product.price}</h3>
           <div className="product__buttons-section">
             <div className="product__amount-button-section">
               <button
-                data-test="minus-button"
-                // disabled={quantity === 1}
+                onClick={() => updateQuantity("-")}
+                disabled={quantity === 1}
                 className="product__minus-button"
               >
                 -
               </button>
-              <span data-test="quantity" className="product__amount">
+              <span data-testid="quantity" className="product__amount">
                 {quantity}
               </span>
+
               <button
-                data-testid="plus"
-                onClick={() =>
-                  setQuantity((PrevQuantity) => (PrevQuantity += 1))
-                }
+                onClick={() => updateQuantity("+")}
                 className="product__plus-button"
               >
-                +s
+                +
               </button>
             </div>
-            <button data-test="product-cta" className="product__product-cta">
+            <button
+              onClick={() => addToCart()}
+              className="product__product-cta"
+            >
               ADD TO CART
             </button>
+          </div>
+          <div className="product__warning">
+            {error && "Maximum in stock selected"}
+          </div>
+          <div className="product__added-to-cart">
+            {addedToCart && "Added to cart"}
           </div>
         </div>
       </div>
       <div className="product__features-and-in-the-box-container">
-        <div data-test="features-section" className="product__features-section">
-          <h3 data-test="product-title" className="product__title">
-            FEATURES
-          </h3>
-          <p data-test="product-copy" className="product__copy">
-            {product && product.features}
-          </p>
+        <div className="product__features-section">
+          <h3 className="product__title">FEATURES</h3>
+          <p className="product__copy">{product && product.features}</p>
         </div>
-        <div
-          data-test="in-the-box-section"
-          className="product__in-the-box-section"
-        >
-          <h3
-            data-test="product-title"
-            className="product__title product__title--half-width"
-          >
+        <div className="product__in-the-box-section">
+          <h3 className="product__title product__title--half-width">
             IN THE BOX
           </h3>
           <div className="product__in-the-box-list">
@@ -150,10 +174,8 @@ export default function Product(props: { productData: ProductsObject[] }) {
         {product && <Carousel products={product.others} />}
       </div>
       <CategorySummary />
-      <div
-        data-test="carousel-section"
-        className="product__carousel-section"
-      ></div>
+      <div className="product__carousel-section"></div>
+      <BottomCopySection />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 export type ProductsObject = {
   id: number;
+  stock: number;
   slug: string;
   name: string;
   image: {
@@ -41,10 +42,6 @@ export type ProductsObject = {
   others: {
     slug: string;
     name: string;
-    image: {
-      mobile: string;
-      tablet: string;
-      desktop: string;
-    };
+    image: string;
   }[];
 };

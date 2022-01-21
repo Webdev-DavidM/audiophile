@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import "../scss/header.scss";
 
@@ -10,6 +10,7 @@ import logo from "../assets/shared/logo.svg";
 import cart from "../assets/shared/icon-cart.svg";
 import data from "../data.json";
 import arrow from "../assets/shared/icon-arrow-right.svg";
+import { CartContext } from "../ context/cartContext";
 
 interface Category {
   category: string;
@@ -17,8 +18,9 @@ interface Category {
 }
 
 const Header: React.FC = () => {
-  const [showMenu, setShowMenu] = React.useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const [categories, setCategories] = useState<Category[] | []>([]);
+  const { items, showCart } = useContext(CartContext);
 
   useEffect(() => {
     let cats = JSON.parse(JSON.stringify(data));
@@ -37,12 +39,8 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div id="top" data-test="header" className={headerMenu}>
-        <div
-          data-test="hamburger"
-          className="header__hamburger"
-          onClick={() => closeDropDown()}
-        >
+      <div id="top" className={headerMenu}>
+        <div className="header__hamburger" onClick={() => closeDropDown()}>
           <img src={hamburger} alt="hamburger menu" />
         </div>
         <div className="header__title">
@@ -72,7 +70,19 @@ const Header: React.FC = () => {
             LOGIN
           </Link>
         </div>
-        <div className="header__cart">
+        <div
+          data-testid="cart-icon"
+          className="header__cart"
+          onClick={() => showCart()}
+        >
+          {items.length > 0 && (
+            <div
+              data-testid="cart-quantity"
+              className="header__cart-quantity header__cart-quantity--added-to-cart"
+            >
+              {items.length}
+            </div>
+          )}
           <img className="header__cart-svg" src={cart} alt="cart" />
         </div>
         <div className={dropdown}>

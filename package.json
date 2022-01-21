@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-mock/state": "^0.1.8",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.0.3",
@@ -13,10 +14,12 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-media": "^1.10.0",
-    "react-router": "^6.2.1",
-    "react-router-dom": "^6.2.1",
+    "react-mock": "^6.0.1",
+    "react-router-dom": "6.0",
     "react-scripts": "5.0.0",
     "react-slick": "^0.28.1",
+    "react-testing-library": "^8.0.1",
+    "react-transition-group": "^4.4.2",
     "slick-carousel": "^1.8.1",
     "typescript": "^4.5.4",
     "web-vitals": "^2.1.2"
@@ -47,6 +50,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "^12.1.2",
+    "@types/react-transition-group": "^4.4.4",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "jest": "^27.4.7"
   }

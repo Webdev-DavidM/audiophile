@@ -26,13 +26,18 @@ export default function ImageGallery(props: { imageGallery: ImageGallery }) {
         <picture className="product__gallery-image">
           <source
             className="product__gallery-image"
-            media="(min-width: 768px, max-width: 1023px)"
-            srcSet={imageGallery && imageGallery.first.tablet}
+            media="(min-width: 1024px )"
+            srcSet={imageGallery.first.desktop}
           />
           <source
             className="product__gallery-image"
-            media="(min-width: 1024px )"
-            srcSet={imageGallery.first.desktop}
+            media="(max-width: 767px )"
+            srcSet={imageGallery.first.mobile}
+          />
+          <source
+            className="product__gallery-image"
+            media="(min-width: 768px, max-width: 1023px)"
+            srcSet={imageGallery && imageGallery.first.tablet}
           />
           <img
             className="product__gallery-image"
@@ -44,13 +49,18 @@ export default function ImageGallery(props: { imageGallery: ImageGallery }) {
         <picture className="product__gallery-image product__gallery-image">
           <source
             className="product__gallery-image"
-            media="(min-width: 768px, max-width: 1023px)"
-            srcSet={imageGallery.second.tablet}
+            media="(min-width: 1024px )"
+            srcSet={imageGallery.second.desktop}
           />
           <source
             className="product__gallery-image"
-            media="(min-width: 1024px )"
-            srcSet={imageGallery.second.desktop}
+            media="(max-width: 767px )"
+            srcSet={imageGallery.second.mobile}
+          />
+          <source
+            className="product__gallery-image"
+            media="(min-width: 768px, max-width: 1023px)"
+            srcSet={imageGallery && imageGallery.second.tablet}
           />
           <img
             className="product__gallery-image"
@@ -62,13 +72,18 @@ export default function ImageGallery(props: { imageGallery: ImageGallery }) {
         <picture className="product__gallery-image">
           <source
             className="product__gallery-image"
-            media="(min-width: 768px, max-width: 1023px)"
-            srcSet={imageGallery.third.tablet}
+            media="(min-width: 1024px )"
+            srcSet={imageGallery.third.desktop}
           />
           <source
             className="product__gallery-image"
-            media="(min-width: 1024px )"
-            srcSet={imageGallery.third.desktop}
+            media="(max-width: 767px )"
+            srcSet={imageGallery.third.mobile}
+          />
+          <source
+            className="product__gallery-image"
+            media="(min-width: 768px, max-width: 1023px)"
+            srcSet={imageGallery && imageGallery.third.tablet}
           />
           <img
             className="product__gallery-image"
