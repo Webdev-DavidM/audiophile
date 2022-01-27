@@ -1,4 +1,4 @@
-@import "../App.scss";
+@import '../App.scss';
 
 .product {
   margin-top: 100px;
@@ -135,6 +135,10 @@
   &__buttons-section {
     margin-top: 2rem;
     display: flex;
+
+    &--cart-modal {
+      margin-top: 0;
+    }
   }
 
   &__amount-button-section {
@@ -143,10 +147,13 @@
     height: 3rem;
     margin-right: 1rem;
     border: 1px solid $darker-grey;
-
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+
+    &--cart-modal {
+      margin-right: 0;
+    }
   }
 
   &__minus-button,

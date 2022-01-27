@@ -1,4 +1,4 @@
-@import "../App.scss";
+@import '../App.scss';
 
 .cart-modal {
   position: fixed;
@@ -44,5 +44,24 @@
       top: 60px;
       right: 80px;
     }
+  }
+
+  &__header-and-remove-all-section {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0;
+  }
+
+  &__image {
+    border-radius: 5px;
+    width: 4rem;
   }
 }
