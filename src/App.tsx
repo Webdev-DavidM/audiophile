@@ -16,15 +16,14 @@ function App() {
   const { showCartModal } = useContext(CartContext);
   return (
     <div className="App">
-      {/* <CSSTransition
+      <CSSTransition
         in={showCartModal}
         timeout={300}
         classNames="modal"
         unmountOnExit
-      > */}
-      {showCartModal && <CartModal />}
-
-      {/* </CSSTransition> */}
+      >
+        <CartModal />
+      </CSSTransition>
       <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />

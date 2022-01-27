@@ -7,7 +7,6 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import Product from "././Product";
 import Header from "../Header";
 import data from "../../data.json";
-import CartModal from "../modals/CartModal";
 import { CartContextProvider } from "../../ context/cartContext";
 
 describe("functionality on the page is all working", () => {

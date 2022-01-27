@@ -47,7 +47,9 @@ export const CartContextProvider: React.FC<{
 
   const removeProduct = (product: string) => {};
 
-  const removeAllProducts = () => {};
+  const removeAllProducts = () => {
+    updateItems([]);
+  };
 
   const decreaseQuantity = (product: string) => {};
 
