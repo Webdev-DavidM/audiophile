@@ -50,11 +50,31 @@ export const CartContextProvider: React.FC<{
 
   const decreaseQuantity = (product: string) => {};
 
-  const increaseQuantity = (product: string) => {};
+  const increaseQuantity = (product: string) => {
+    let itemsToUpdate = [...items];
+    itemsToUpdate.map((item) =>
+      item.name === product ? item.quantity++ : item
+    );
+    updateItems(itemsToUpdate);
+  };
 
   const addProduct = (itemToAdd: Items) => {
+    let addedAlready = false;
+    // If the user is adding the same item again, this will add this quanity to the existing item
     let existingItems = [...items];
-    updateItems(existingItems.concat(itemToAdd));
+    // eslint-disable-next-line array-callback-return
+    existingItems.map((item) => {
+      if (item.name === itemToAdd.name) {
+        item.quantity += itemToAdd.quantity;
+        addedAlready = true;
+      } else {
+        return item;
+      }
+    });
+
+    addedAlready
+      ? updateItems(existingItems)
+      : updateItems(existingItems.concat(itemToAdd));
   };
 
   const showCart = () => {

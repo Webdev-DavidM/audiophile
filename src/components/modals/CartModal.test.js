@@ -4,7 +4,7 @@
 
 import { CartContextProvider } from '../../ context/cartContext';
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import CartModal from './CartModal';
 import Header from '../Header';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
@@ -46,20 +46,22 @@ describe('test the modal is shown and functionality', () => {
 
   test('Once a product is selected on the product page', async () => {
     const testName = await screen.findByTestId('product-name');
-    expect(testName).toHaveTextContent('XX59 Headphones');
+    expect(testName).toHaveTextContent('XX59');
   });
 
   test('If the user clicks remove all the empty becomes empty', async () => {
+    // This first line makes sure the product has shown up in the cart as this is async before
+    // I then test it is removed properly below
+    const product = await screen.findByTestId('product-name');
     let emptyButton = screen.getByRole('button', {
-      name: /empty cart/i,
+      name: /remove all/i,
     });
     userEvent.click(emptyButton);
-    const testName = await screen.findByTestId('product-name');
-    expect(testName).toHaveTextContent('');
+    await waitFor(() => expect(product).not.toBeInTheDocument());
   });
 
   test('if the user clicks + then an item is added to their basket for that item and the correct subtotal  is shown', async () => {
-    let plusButtonCart = screen.getByTestId('plus-button-cart');
+    let plusButtonCart = await screen.findByTestId('plus-button-cart');
     userEvent.click(plusButtonCart);
     let quantity = await screen.findByTestId('quantity-cart-item');
     expect(quantity).toHaveTextContent('2');

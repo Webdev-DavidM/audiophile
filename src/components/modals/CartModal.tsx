@@ -18,7 +18,11 @@ export default function CartModal() {
       <div className='cart-modal__container'>
         <div className='cart-modal__header-and-remove-all-section'>
           <span>CART ({items.length})</span>
-          <button onClick={() => removeAllProducts()}>Remove All</button>
+          <button
+            className='cart-modal__remove-btn'
+            onClick={() => removeAllProducts()}>
+            Remove all
+          </button>
         </div>
 
         {items.length > 0 &&
@@ -31,7 +35,7 @@ export default function CartModal() {
                   className='cart-modal__item-name'>
                   {item.name.split(' ')[0]}
                 </div>
-                <div className='cart-modal__price'>£{item.value}</div>
+                <div className='cart-modal__copy-grey'>£{item.value}</div>
               </div>
               <div className='product__buttons-section product__buttons-section--cart-modal'>
                 <div className='product__amount-button-section product__amount-button-section--cart-modal'>
@@ -57,10 +61,11 @@ export default function CartModal() {
               </div>
             </div>
           ))}
-        <div className='total-section'>
-          <span>TOTAL</span>
-          <span>£{total}</span>
+        <div className='cart-modal__total-section'>
+          <span className='cart-modal__copy-grey'>TOTAL</span>
+          <h5>£{total}</h5>
         </div>
+        <button className='cart-modal__checkout-btn'>CHECKOUT</button>
       </div>
     </div>
   );

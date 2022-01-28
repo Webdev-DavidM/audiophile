@@ -138,6 +138,7 @@
 
     &--cart-modal {
       margin-top: 0;
+      margin-left: auto;
     }
   }
 
@@ -153,6 +154,9 @@
 
     &--cart-modal {
       margin-right: 0;
+      margin-left: auto;
+      height: 2.5rem;
+      border: none;
     }
   }
 
