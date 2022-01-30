@@ -11,6 +11,7 @@ interface Items {
 interface CartContextToGive {
   isLoggedIn: boolean;
   items: Items[] | [];
+  loggedIn: (value: boolean) => void;
   decreaseQuantity: (item: string) => void;
   increaseQuantity: (item: string) => void;
   addProduct: (itemToAdd: Items) => void;
@@ -20,6 +21,7 @@ interface CartContextToGive {
 }
 
 export const CartContext = React.createContext<CartContextToGive>({
+  loggedIn: () => null,
   isLoggedIn: false,
   items: [],
   decreaseQuantity: () => null,
@@ -38,6 +40,7 @@ export const CartContextProvider: React.FC<{
 }> = (props) => {
   const [items, updateItems] = useState<Items[] | []>([]);
   const [showCartModal, setShowCartModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     updateItems([]);
@@ -48,7 +51,19 @@ export const CartContextProvider: React.FC<{
     updateItems([]);
   };
 
-  const decreaseQuantity = (product: string) => {};
+  const decreaseQuantity = (product: string) => {
+    // If the user is adding the same item again, this will add this quanity to the existing item
+    let existingItems = [...items];
+    // eslint-disable-next-line array-callback-return
+    existingItems.map((item) => {
+      if (item.name === product && item.quantity !== 1) {
+        item.quantity--;
+      } else {
+        return item;
+      }
+      updateItems(existingItems);
+    });
+  };
 
   const increaseQuantity = (product: string) => {
     let itemsToUpdate = [...items];
@@ -56,6 +71,10 @@ export const CartContextProvider: React.FC<{
       item.name === product ? item.quantity++ : item
     );
     updateItems(itemsToUpdate);
+  };
+
+  const loggedIn = (value: boolean) => {
+    setIsLoggedIn(value);
   };
 
   const addProduct = (itemToAdd: Items) => {
@@ -75,6 +94,10 @@ export const CartContextProvider: React.FC<{
     addedAlready
       ? updateItems(existingItems)
       : updateItems(existingItems.concat(itemToAdd));
+
+    if (isLoggedIn) {
+      localStorage.setItem('items', JSON.stringify(items));
+    }
   };
 
   const showCart = () => {
@@ -84,15 +107,17 @@ export const CartContextProvider: React.FC<{
   return (
     <CartContext.Provider
       value={{
-        isLoggedIn: false,
+        isLoggedIn: isLoggedIn,
         items: items,
+        loggedIn: loggedIn,
         showCartModal: showCartModal,
         showCart: showCart,
         decreaseQuantity: decreaseQuantity,
         addProduct: addProduct,
         removeAllProducts: removeAllProducts,
         increaseQuantity: increaseQuantity,
-      }}>
+      }}
+    >
       {props.children}
     </CartContext.Provider>
   );

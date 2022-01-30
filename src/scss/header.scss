@@ -1,4 +1,4 @@
-@import "../App.scss";
+@import '../App.scss';
 
 .header {
   background-color: $black;
@@ -85,7 +85,7 @@
     position: relative;
 
     &:after {
-      content: "";
+      content: '';
       display: block;
       position: absolute;
       top: 88%;
@@ -165,7 +165,7 @@
 
   &__cart-quantity {
     position: absolute;
-    color: red;
+    color: $warning-red;
     z-index: 100;
     opacity: 0;
 

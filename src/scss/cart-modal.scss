@@ -89,6 +89,11 @@
     margin-top: 2rem;
   }
 
+  &__error-message {
+    margin-top: 2rem;
+    color: $warning-red;
+  }
+
   &__checkout-btn {
     @include block-button-orange;
     width: 100%;

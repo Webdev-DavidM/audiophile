@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { ProductsObject } from "../../Interfaces/productObject";
-import { Link } from "react-router-dom";
-import "../../scss/categorypage.scss";
-import CategorySummary from "../sections-used-on-multiple-pages/CategorySummary";
-import BottomCopySection from "../sections-used-on-multiple-pages/BottomCopySection";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { ProductsObject } from '../../Interfaces/productObject';
+import { Link } from 'react-router-dom';
+import '../../scss/categorypage.scss';
+import CategorySummary from '../sections-used-on-multiple-pages/CategorySummary';
+import BottomCopySection from '../sections-used-on-multiple-pages/BottomCopySection';
 
 const Category = (props: { productData: ProductsObject[] }) => {
   let [products, setProducts] = useState<ProductsObject[] | []>([]);
@@ -39,12 +39,12 @@ const Category = (props: { productData: ProductsObject[] }) => {
                     className="category__image"
                     media="(min-width: 1024px )"
                     srcSet={product.image.desktop}
-                  />{" "}
+                  />{' '}
                   <source
                     className="category__image"
                     media="(max-width: 767px )"
                     srcSet={product.image.mobile}
-                  />{" "}
+                  />{' '}
                   <source
                     className="category__image"
                     media="(min-width: 768px, max-width: 1023px)"
@@ -64,7 +64,7 @@ const Category = (props: { productData: ProductsObject[] }) => {
                   {product.description}
                 </p>
                 <Link
-                  data-test="category-cta"
+                  data-testid="category-cta"
                   to={`/product/${product.slug}`}
                   className="category__product-cta"
                 >
