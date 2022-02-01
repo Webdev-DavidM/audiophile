@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useContext, useEffect, useRef } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.scss';
 import Homepage from './components/pages/Homepage';
 import Checkout from './components/pages/Checkout';
@@ -15,30 +15,38 @@ import { CartContext } from './ context/cartContext';
 
 function App() {
   const { showCartModal } = useContext(CartContext);
+  const { pathname } = useLocation();
+  const myRef = useRef(null);
+
+  // below makes each page loaded scroll to the top
+  useEffect(() => {
+    // @ts-ignore: Object is possibly 'null'.
+    myRef.current.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
-    <div className="App">
+    <div id='top' ref={myRef} className='App'>
       <CSSTransition
         in={showCartModal}
         timeout={300}
-        classNames="modal"
-        unmountOnExit
-      >
+        classNames='modal'
+        unmountOnExit>
         <CartModal />
       </CSSTransition>
       <Header />
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path='/' element={<Homepage />} />
+        <Route path='/checkout' element={<Checkout />} />
         <Route
-          path="/category/:category"
+          path='/category/:category'
           element={<Category productData={data.products} />}
         />
         <Route
-          path="/product/:slug"
+          path='/product/:slug'
           element={<Product productData={data.products} />}
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/checkout' element={<Checkout />} />
       </Routes>
       <Footer />
     </div>

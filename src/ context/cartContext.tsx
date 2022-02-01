@@ -116,8 +116,7 @@ export const CartContextProvider: React.FC<{
         addProduct: addProduct,
         removeAllProducts: removeAllProducts,
         increaseQuantity: increaseQuantity,
-      }}
-    >
+      }}>
       {props.children}
     </CartContext.Provider>
   );
