@@ -23,6 +23,7 @@ export default function Product(props: { productData: ProductsObject[] }) {
   useEffect(() => {
     let { productData } = props;
 
+    console.log('hit');
     let chosenProduct = productData.filter(
       (product) => product.slug === paramsProduct.slug
     );
@@ -30,11 +31,6 @@ export default function Product(props: { productData: ProductsObject[] }) {
   }, [paramsProduct, props]);
 
   const goBack = () => {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
     navigate(-1);
   };
 
@@ -67,93 +63,97 @@ export default function Product(props: { productData: ProductsObject[] }) {
   };
 
   return (
-    <div className='product'>
-      <span className='product__go-back-button' onClick={() => goBack()}>
+    <div className="product">
+      <span className="product__go-back-button" onClick={() => goBack()}>
         GO BACK
       </span>
-      <div className='product__product-details'>
-        <div className='product__image-container'>
+      <div className="product__product-details">
+        <div className="product__image-container">
           {product !== undefined && (
             //note that it will only work in this order so put the two media queries tbalet last
             <picture>
               <source
-                className='product__image'
-                media='(max-width: 767px)'
+                className="product__image"
+                media="(max-width: 767px)"
                 srcSet={`${product.image.mobile}`}
               />
               <source
-                className='product__image'
-                media='(min-width: 1024px)'
+                className="product__image"
+                media="(min-width: 1024px)"
                 srcSet={`${product.image.mobile}`}
               />
               <source
-                className='product__image'
-                media='(min-width: 768px), (max-width: 1023px)'
+                className="product__image"
+                media="(min-width: 768px), (max-width: 1023px)"
                 srcSet={`${product.image.tablet}`}
               />
 
-              <img className='product__image' src={`${product.image.mobile}`} />
+              <img className="product__image" src={`${product.image.mobile}`} />
             </picture>
           )}
         </div>
-        <div className='product__copy-container'>
+        <div className="product__copy-container">
           {product && product.new && (
-            <h6 className='product__new-product'>NEW PRODUCT</h6>
+            <h6 className="product__new-product">NEW PRODUCT</h6>
           )}
 
-          <h3 className='product__title'>
+          <h3 className="product__title">
             {product && product.name.toUpperCase()}
           </h3>
-          <p className='product__copy'>{product && product.description}</p>
-          <h3 className='product__price'>£ {product && product.price}</h3>
-          <div className='product__buttons-section'>
-            <div className='product__amount-button-section'>
+          <p className="product__copy">{product && product.description}</p>
+          <h3 className="product__price">£ {product && product.price}</h3>
+          <div className="product__buttons-section">
+            <div className="product__amount-button-section">
               <button
                 onClick={() => updateQuantity('-')}
                 disabled={quantity === 1}
-                className='product__minus-button'>
+                className="product__minus-button"
+              >
                 -
               </button>
-              <span data-testid='quantity' className='product__amount'>
+              <span data-testid="quantity" className="product__amount">
                 {quantity}
               </span>
 
               <button
                 onClick={() => updateQuantity('+')}
-                className='product__plus-button'>
+                className="product__plus-button"
+              >
                 +
               </button>
             </div>
             <button
               onClick={() => addToCart()}
-              className='product__product-cta'>
+              className="product__product-cta"
+            >
               ADD TO CART
             </button>
           </div>
-          <div className='product__warning'>
+          <div className="product__warning">
             {error && 'Maximum in stock selected'}
           </div>
-          <div className='product__added-to-cart'>
+          <div className="product__added-to-cart">
             {addedToCart && 'Added to cart'}
           </div>
         </div>
       </div>
-      <div className='product__features-and-in-the-box-container'>
-        <div className='product__features-section'>
-          <h3 className='product__title'>FEATURES</h3>
-          <p className='product__copy'>{product && product.features}</p>
+      <div className="product__features-and-in-the-box-container">
+        <div className="product__features-section">
+          <h3 className="product__title">FEATURES</h3>
+          <p className="product__copy">{product && product.features}</p>
         </div>
-        <div className='product__in-the-box-section'>
-          <h3 className='product__title product__title--half-width'>
+        <div className="product__in-the-box-section">
+          <h3 className="product__title product__title--half-width">
             IN THE BOX
           </h3>
-          <div className='product__in-the-box-list'>
+          <div className="product__in-the-box-list">
             {product &&
               product.items.map((item, index) => (
                 <div
                   key={index}
-                  className='product__copy product__copy--no-margin-top'>
-                  <span className='product__item-quantity'>
+                  className="product__copy product__copy--no-margin-top"
+                >
+                  <span className="product__item-quantity">
                     {item.quantity} x
                   </span>
                   {item.item}
@@ -164,14 +164,14 @@ export default function Product(props: { productData: ProductsObject[] }) {
       </div>
       {product && <ImageGallery imageGallery={product.gallery} />}
 
-      <h3 className='product__title product__title--center'>
+      <h3 className="product__title product__title--center">
         YOU MAY ALSO LIKE
       </h3>
-      <div className='product__carousel'>
+      <div className="product__carousel">
         {product && <Carousel products={product.others} />}
       </div>
       <CategorySummary />
-      <div className='product__carousel-section'></div>
+      <div className="product__carousel-section"></div>
       <BottomCopySection />
     </div>
   );

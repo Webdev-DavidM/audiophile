@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.scss';
 import Homepage from './components/pages/Homepage';
@@ -15,6 +15,7 @@ import { CartContext } from './ context/cartContext';
 
 function App() {
   const { showCartModal } = useContext(CartContext);
+
   return (
     <div className="App">
       <CSSTransition

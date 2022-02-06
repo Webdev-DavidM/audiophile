@@ -33,11 +33,9 @@ export default function CartModal() {
 
   const checkout = () => {
     setErrorMessage(null);
-    console.log(items.length === 0);
     if (!isLoggedIn && items.length === 0) {
       setErrorMessage('Please select an item before trying to checkout');
     } else if (!isLoggedIn && items.length !== 0) {
-      console.log(isLoggedIn);
       setErrorMessage('Please sign in or sign up to checkout');
     } else {
       showCart();
