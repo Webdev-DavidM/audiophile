@@ -11,7 +11,7 @@ import { CartContext } from '../../ context/cartContext';
 export default function Checkout() {
   const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState('cash');
-  const { showConfirmation } = useContext(CartContext);
+  const { showConfirmation, removeAllProducts } = useContext(CartContext);
 
   const formik = useFormik({
     // I can use the initial value beow to prefill the form if i am editing it.
@@ -37,32 +37,38 @@ export default function Checkout() {
 
     onSubmit: (values) => {
       showConfirmation(true);
+      removeAllProducts();
       console.log('submitted order', values, paymentMethod);
     },
   });
 
   return (
-    <div className='checkout'>
-      <span className='checkout__go-back-btn' onClick={() => navigate(-1)}>
+    <div className="checkout">
+      <span className="checkout__go-back-btn" onClick={() => navigate(-1)}>
         Go back
       </span>
+      <FormikProvider value={formik}>
+        <Form
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-evenly',
+          }}
+          onSubmit={formik.handleSubmit}
+        >
+          <div className="checkout__form-container  checkout__form-container--two-third-width">
+            <h3 className="checkout__heading">CHECKOUT</h3>
+            {/* The formikProvider component takes in my react useFormik hook and gives all the values and methods to the components  */}
 
-      <div className='checkout__form-container  checkout__form-container--two-third-width'>
-        <h3 className='checkout__heading'>CHECKOUT</h3>
-        {/* The formikProvider component takes in my react useFormik hook and gives all the values and methods to the components  */}
-        <FormikProvider value={formik}>
-          <Form
-            style={{ display: 'flex', flexWrap: 'wrap' }}
-            onSubmit={formik.handleSubmit}>
             <Grid container spacing={3}>
-              <h6 className='checkout__subheading'>BILLING DETAILS</h6>
+              <h6 className="checkout__subheading">BILLING DETAILS</h6>
               <Grid item xs={12} md={6}>
-                <p className='checkout__fieldname'>Name</p>
+                <p className="checkout__fieldname">Name</p>
                 <TextField
                   fullWidth
-                  variant='outlined'
-                  id='billingDetails.name'
-                  name='billingDetails.name'
+                  variant="outlined"
+                  id="billingDetails.name"
+                  name="billingDetails.name"
                   value={formik.values.billingDetails.name}
                   onChange={formik.handleChange}
                   error={
@@ -76,12 +82,12 @@ export default function Checkout() {
                 />
               </Grid>
               <Grid item xs={12} md={6}>
-                <p className='checkout__fieldname'>Email Address</p>
+                <p className="checkout__fieldname">Email Address</p>
                 <TextField
                   fullWidth
-                  variant='outlined'
-                  id='billingDetails.email'
-                  name='billingDetails.email'
+                  variant="outlined"
+                  id="billingDetails.email"
+                  name="billingDetails.email"
                   onChange={formik.handleChange}
                   error={
                     getIn(formik.touched, 'billingDetails.email') &&
@@ -94,12 +100,12 @@ export default function Checkout() {
                 />
               </Grid>
               <Grid item xs={12} md={6}>
-                <p className='checkout__fieldname'>Phone number</p>
+                <p className="checkout__fieldname">Phone number</p>
                 <TextField
                   fullWidth
-                  variant='outlined'
-                  id='billingDetails.phoneNumber'
-                  name='billingDetails.phoneNumber'
+                  variant="outlined"
+                  id="billingDetails.phoneNumber"
+                  name="billingDetails.phoneNumber"
                   onChange={formik.handleChange}
                   error={
                     getIn(formik.touched, 'billingDetails.phoneNumber') &&
@@ -111,16 +117,16 @@ export default function Checkout() {
                   }
                 />
               </Grid>
-              <h6 className='checkout__subheading checkout__subheading--margin-top'>
+              <h6 className="checkout__subheading checkout__subheading--margin-top">
                 SHIPPING INFO
               </h6>
               <Grid item xs={12}>
-                <p className='checkout__fieldname'>Your Address</p>
+                <p className="checkout__fieldname">Your Address</p>
                 <TextField
                   fullWidth
-                  variant='outlined'
-                  id='shippingInfo.address'
-                  name='shippingInfo.address'
+                  variant="outlined"
+                  id="shippingInfo.address"
+                  name="shippingInfo.address"
                   onChange={formik.handleChange}
                   error={
                     getIn(formik.touched, 'shippingInfo.address') &&
@@ -133,12 +139,12 @@ export default function Checkout() {
                 />
               </Grid>
               <Grid item xs={12} md={6}>
-                <p className='checkout__fieldname'>Postcode</p>
+                <p className="checkout__fieldname">Postcode</p>
                 <TextField
                   fullWidth
-                  variant='outlined'
-                  id='shippingInfo.postCode'
-                  name='shippingInfo.postCode'
+                  variant="outlined"
+                  id="shippingInfo.postCode"
+                  name="shippingInfo.postCode"
                   onChange={formik.handleChange}
                   error={
                     getIn(formik.touched, 'shippingInfo.postCode') &&
@@ -151,12 +157,12 @@ export default function Checkout() {
                 />
               </Grid>
               <Grid item xs={12} md={6}>
-                <p className='checkout__fieldname'>City</p>
+                <p className="checkout__fieldname">City</p>
                 <TextField
                   fullWidth
-                  variant='outlined'
-                  id='shippingInfo.city'
-                  name='shippingInfo.city'
+                  variant="outlined"
+                  id="shippingInfo.city"
+                  name="shippingInfo.city"
                   onChange={formik.handleChange}
                   error={
                     getIn(formik.touched, 'shippingInfo.city') &&
@@ -169,12 +175,12 @@ export default function Checkout() {
                 />
               </Grid>
               <Grid item xs={12} md={6}>
-                <p className='checkout__fieldname'>Country</p>
+                <p className="checkout__fieldname">Country</p>
                 <TextField
                   fullWidth
-                  variant='outlined'
-                  id='shippingInfo.country'
-                  name='shippingInfo.country'
+                  variant="outlined"
+                  id="shippingInfo.country"
+                  name="shippingInfo.country"
                   onChange={formik.handleChange}
                   error={
                     getIn(formik.touched, 'shippingInfo.country') &&
@@ -186,22 +192,22 @@ export default function Checkout() {
                   }
                 />
               </Grid>
-              <h6 className='checkout__subheading checkout__subheading--margin-top checkout__subheading--margin-bottom'>
+              <h6 className="checkout__subheading checkout__subheading--margin-top checkout__subheading--margin-bottom">
                 PAYMENT DETAILS
               </h6>
               <Grid item xs={12} md={6}>
-                <p className='checkout__fieldname checkout__fieldname--no-margin-top'>
+                <p className="checkout__fieldname checkout__fieldname--no-margin-top">
                   Payment method
                 </p>
               </Grid>
               <Grid item xs={12} md={6}>
-                <div className='checkout__radio-btn-container'>
-                  <label className='checkout__radio-label'>
+                <div className="checkout__radio-btn-container">
+                  <label className="checkout__radio-label">
                     <input
-                      type='radio'
-                      name='payment'
+                      type="radio"
+                      name="payment"
                       checked={paymentMethod === 'emoney'}
-                      className='checkout__radio-btn'
+                      className="checkout__radio-btn"
                       onChange={() => {
                         setPaymentMethod('emoney');
                       }}
@@ -211,16 +217,16 @@ export default function Checkout() {
                 </div>
                 <br />
 
-                <div className='checkout__radio-btn-container'>
-                  <label className='checkout__radio-label'>
+                <div className="checkout__radio-btn-container">
+                  <label className="checkout__radio-label">
                     <input
-                      type='radio'
-                      className='checkout__radio-btn'
+                      type="radio"
+                      className="checkout__radio-btn"
                       onChange={() => {
                         setPaymentMethod('cash');
                       }}
                       checked={paymentMethod === 'cash'}
-                      name='payment'
+                      name="payment"
                     />
                     Cash on delivery
                   </label>
@@ -230,13 +236,13 @@ export default function Checkout() {
                 <>
                   {' '}
                   <Grid item xs={12} md={6}>
-                    <p className='checkout__fieldname'>e-Money number</p>
+                    <p className="checkout__fieldname">e-Money number</p>
 
                     <TextField
                       fullWidth
-                      variant='outlined'
-                      id='paymentDetails.number'
-                      name='paymentDetails.number'
+                      variant="outlined"
+                      id="paymentDetails.number"
+                      name="paymentDetails.number"
                       onChange={formik.handleChange}
                       error={
                         getIn(formik.touched, 'paymentDetails.number') &&
@@ -249,12 +255,12 @@ export default function Checkout() {
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <p className='checkout__fieldname'>e-Money PIN</p>
+                    <p className="checkout__fieldname">e-Money PIN</p>
                     <TextField
                       fullWidth
-                      variant='outlined'
-                      id='paymentDetails.pin'
-                      name='paymentDetails.pin'
+                      variant="outlined"
+                      id="paymentDetails.pin"
+                      name="paymentDetails.pin"
                       onChange={formik.handleChange}
                       error={
                         getIn(formik.touched, 'paymentDetails.pin') &&
@@ -269,15 +275,12 @@ export default function Checkout() {
                 </>
               )}
             </Grid>
-            <button type='submit' className='checkout__pay-btn'>
-              CONTINUE &amp; PAY
-            </button>
-          </Form>
-        </FormikProvider>
-      </div>
-      <div className='checkout__summary-container checkout__summary-container--one-third-width'>
-        <CheckoutSummary />
-      </div>
+          </div>
+          <div className="checkout__summary-container checkout__summary-container--one-third-width">
+            <CheckoutSummary />
+          </div>
+        </Form>
+      </FormikProvider>
     </div>
   );
 }
