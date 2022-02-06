@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-import "../scss/header.scss";
+import React, { useState, useEffect, useContext } from 'react';
+import { NavLink, Navigate } from 'react-router-dom';
+import '../scss/header.scss';
 
 /* Note when using typescript below is the only import style which will work is below, 
 importing an image/svg as a component wont work, I also need to create a index.d.ts 
 file to include svg and jpg and any other files */
-import hamburger from "../assets/shared/icon-hamburger.svg";
-import logo from "../assets/shared/logo.svg";
-import cart from "../assets/shared/icon-cart.svg";
-import data from "../data.json";
-import arrow from "../assets/shared/icon-arrow-right.svg";
-import { CartContext } from "../ context/cartContext";
+import hamburger from '../assets/shared/icon-hamburger.svg';
+import logo from '../assets/shared/logo.svg';
+import cart from '../assets/shared/icon-cart.svg';
+import data from '../data.json';
+import arrow from '../assets/shared/icon-arrow-right.svg';
+import { CartContext } from '../ context/cartContext';
+import { useNavigate } from 'react-router-dom';
 
 interface Category {
   category: string;
@@ -20,11 +21,12 @@ interface Category {
 const Header: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [categories, setCategories] = useState<Category[] | []>([]);
-  const { items, showCart } = useContext(CartContext);
+  const { items, showCart, showCartModal } = useContext(CartContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let cats = JSON.parse(JSON.stringify(data));
-    setCategories(cats["category-images"]);
+    setCategories(cats['category-images']);
   }, []);
 
   let headerMenu = showMenu ? `header header--open` : `header`;
@@ -39,83 +41,117 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div id="top" className={headerMenu}>
-        <div className="header__hamburger" onClick={() => closeDropDown()}>
-          <img src={hamburger} alt="hamburger menu" />
+      <div id='top' className={headerMenu}>
+        <div className='header__hamburger' onClick={() => closeDropDown()}>
+          <img src={hamburger} alt='hamburger menu' />
         </div>
-        <div className="header__title">
-          <Link onClick={() => setShowMenu(false)} to="/">
-            <img src={logo} alt="audiophile logo" />
-          </Link>
+        <div className='header__title'>
+          <NavLink
+            onClick={() => {
+              setShowMenu(true);
+              showCart('false');
+            }}
+            to='/'>
+            <img src={logo} alt='audiophile logo' />
+          </NavLink>
         </div>
-        <ul className="header__nav-links">
-          <Link to="/" className="header__link">
+        <ul className='header__nav-links'>
+          <NavLink
+            onClick={() => showCart('false')}
+            to='/'
+            className={({ isActive }) =>
+              isActive ? 'header__link header__link--active' : 'header__link'
+            }>
             HOME
-          </Link>
-          <Link to="/category/headphones" className="header__link">
+          </NavLink>
+          <NavLink
+            onClick={() => showCart('false')}
+            to='/category/headphones'
+            className={({ isActive }) =>
+              isActive ? 'header__link header__link--active' : 'header__link'
+            }>
             HEADPHONES
-          </Link>
-          <Link to="category/speakers" className="header__link">
+          </NavLink>
+          <NavLink
+            onClick={() => showCart('false')}
+            to='category/speakers'
+            className={({ isActive }) =>
+              isActive ? 'header__link header__link--active' : 'header__link'
+            }>
             SPEAKERS
-          </Link>
-          <Link to="/category/earphones" className="header__link">
+          </NavLink>
+          <NavLink
+            onClick={() => showCart('false')}
+            className={({ isActive }) =>
+              isActive ? 'header__link header__link--active' : 'header__link'
+            }
+            to='/category/earphones'>
             EARPHONES
-          </Link>
+          </NavLink>
         </ul>
-        <div className="header__login-and-register">
-          <Link to="/sign-up" className="header__sign-up">
+        <div className='header__login-and-register'>
+          <NavLink
+            onClick={() => showCart('false')}
+            className='header__sign-up'
+            to='/sign-up'>
             SIGN UP
-          </Link>
-          <Link to="/login" className="header__register">
+          </NavLink>
+          <NavLink
+            onClick={() => showCart('false')}
+            className='header__log-in'
+            to='/login'>
             LOGIN
-          </Link>
+          </NavLink>
         </div>
         <div
-          data-testid="cart-icon"
-          className="header__cart"
-          onClick={() => showCart()}
-        >
+          data-testid='cart-icon'
+          className='header__cart'
+          onClick={() => showCart('toggle')}>
           {items.length > 0 && (
             <div
-              data-testid="cart-quantity"
-              className="header__cart-quantity header__cart-quantity--added-to-cart"
-            >
+              data-testid='cart-quantity'
+              className='header__cart-quantity header__cart-quantity--added-to-cart'>
               {items.length}
             </div>
           )}
-          <img className="header__cart-svg" src={cart} alt="cart" />
+          <img className='header__cart-svg' src={cart} alt='cart' />
         </div>
         <div className={dropdown}>
-          <Link to="/sign-up" className="header__drop-down-sign-up">
+          <NavLink
+            onClick={() => setShowMenu(false)}
+            className='header__drop-down-sign-up'
+            to='/sign-up'>
             SIGN UP
-          </Link>
-          <Link to="/register" className="header__drop-down-register">
+          </NavLink>
+          <NavLink
+            onClick={() => setShowMenu(false)}
+            className='header__drop-down-log-in'
+            to='/login'>
             LOGIN
-          </Link>
-          <div className="category-summary">
+          </NavLink>
+          <div className='category-summary'>
             {categories &&
               categories.map((cat, index) => (
-                <div key={index} className="category-summary__item">
+                <div key={index} className='category-summary__item'>
                   <img
-                    className="category-summary__image"
+                    className='category-summary__image'
                     src={cat.image}
-                    alt=""
+                    alt=''
                   />
-                  <h6 className="category-summary__category-name">
+                  <h6 className='category-summary__category-name'>
                     {cat.category.toUpperCase()}
                   </h6>
-                  <Link
+                  <NavLink
                     onClick={() => setShowMenu(false)}
                     to={`/category/${cat.category}`}
-                    className="category-summary__cta"
-                  >
-                    <span className="category-summary__cta-text">SHOP</span>
+                    className='category-summary__cta'>
+                    <span className='category-summary__cta-text'>SHOP</span>
                     <img
-                      className="category-summary__arrow"
+                      className='category-summary__arrow'
                       src={arrow}
-                      alt=""
+                      alt=''
                     />
-                  </Link>
+                  </NavLink>
                 </div>
               ))}
           </div>

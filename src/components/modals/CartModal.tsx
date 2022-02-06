@@ -33,12 +33,12 @@ export default function CartModal() {
 
   const checkout = () => {
     setErrorMessage(null);
-    if (!isLoggedIn && items.length === 0) {
+    if (items.length === 0) {
       setErrorMessage('Please select an item before trying to checkout');
     } else if (!isLoggedIn && items.length !== 0) {
       setErrorMessage('Please sign in or sign up to checkout');
     } else {
-      showCart();
+      showCart('false');
       navigate('/checkout');
     }
   };
@@ -61,7 +61,7 @@ export default function CartModal() {
 
         {items.length > 0 &&
           items.map((item) => (
-            <div className="cart-modal__item">
+            <div key={item.name} className="cart-modal__item">
               <img src={item.image} alt="" className="cart-modal__image" />
               <div className="cart-modal__item-details">
                 <div

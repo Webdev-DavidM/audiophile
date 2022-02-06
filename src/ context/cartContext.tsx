@@ -16,8 +16,10 @@ interface CartContextToGive {
   increaseQuantity: (item: string) => void;
   addProduct: (itemToAdd: Items) => void;
   removeAllProducts: () => void;
-  showCart: () => void;
+  showCart: (value: string) => void;
   showCartModal: boolean;
+  showConfirmation: (value: boolean) => void;
+  showConfirmationModal: boolean;
 }
 
 export const CartContext = React.createContext<CartContextToGive>({
@@ -30,6 +32,8 @@ export const CartContext = React.createContext<CartContextToGive>({
   removeAllProducts: () => null,
   showCartModal: false,
   showCart: () => null,
+  showConfirmationModal: false,
+  showConfirmation: () => null,
 });
 
 // I need to really define what props are coming in to cartContext
@@ -40,6 +44,7 @@ export const CartContextProvider: React.FC<{
 }> = (props) => {
   const [items, updateItems] = useState<Items[] | []>([]);
   const [showCartModal, setShowCartModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -77,6 +82,10 @@ export const CartContextProvider: React.FC<{
     setIsLoggedIn(value);
   };
 
+  const showConfirmation = (value: boolean) => {
+    setShowConfirmationModal(value);
+  };
+
   const addProduct = (itemToAdd: Items) => {
     let addedAlready = false;
     // If the user is adding the same item again, this will add this quanity to the existing item
@@ -100,8 +109,12 @@ export const CartContextProvider: React.FC<{
     }
   };
 
-  const showCart = () => {
-    setShowCartModal((bool) => !bool);
+  const showCart = (action: string) => {
+    if (action === 'toggle') {
+      setShowCartModal((bool) => !bool);
+    } else {
+      setShowCartModal(false);
+    }
   };
 
   return (
@@ -116,8 +129,9 @@ export const CartContextProvider: React.FC<{
         addProduct: addProduct,
         removeAllProducts: removeAllProducts,
         increaseQuantity: increaseQuantity,
-      }}
-    >
+        showConfirmationModal: showConfirmationModal,
+        showConfirmation: showConfirmation,
+      }}>
       {props.children}
     </CartContext.Provider>
   );
