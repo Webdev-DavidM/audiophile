@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
 import '../scss/header.scss';
 
 /* Note when using typescript below is the only import style which will work is below, 
@@ -39,18 +39,6 @@ const Header: React.FC = () => {
     setShowMenu(!showMenu);
   };
 
-  const goToLogIn = () => {
-    setShowMenu(!showMenu);
-    showCartModal && showCart();
-    navigate('/login');
-  };
-
-  const goToSignUp = () => {
-    setShowMenu(!showMenu);
-    showCartModal && showCart();
-    navigate('/sign-up');
-  };
-
   return (
     <>
       <div id='top' className={headerMenu}>
@@ -58,36 +46,67 @@ const Header: React.FC = () => {
           <img src={hamburger} alt='hamburger menu' />
         </div>
         <div className='header__title'>
-          <Link onClick={() => setShowMenu(false)} to='/'>
+          <NavLink
+            onClick={() => {
+              setShowMenu(true);
+              showCart('false');
+            }}
+            to='/'>
             <img src={logo} alt='audiophile logo' />
-          </Link>
+          </NavLink>
         </div>
         <ul className='header__nav-links'>
-          <Link to='/' className='header__link'>
+          <NavLink
+            onClick={() => showCart('false')}
+            to='/'
+            className={({ isActive }) =>
+              isActive ? 'header__link header__link--active' : 'header__link'
+            }>
             HOME
-          </Link>
-          <Link to='/category/headphones' className='header__link'>
+          </NavLink>
+          <NavLink
+            onClick={() => showCart('false')}
+            to='/category/headphones'
+            className={({ isActive }) =>
+              isActive ? 'header__link header__link--active' : 'header__link'
+            }>
             HEADPHONES
-          </Link>
-          <Link to='category/speakers' className='header__link'>
+          </NavLink>
+          <NavLink
+            onClick={() => showCart('false')}
+            to='category/speakers'
+            className={({ isActive }) =>
+              isActive ? 'header__link header__link--active' : 'header__link'
+            }>
             SPEAKERS
-          </Link>
-          <Link to='/category/earphones' className='header__link'>
+          </NavLink>
+          <NavLink
+            onClick={() => showCart('false')}
+            className={({ isActive }) =>
+              isActive ? 'header__link header__link--active' : 'header__link'
+            }
+            to='/category/earphones'>
             EARPHONES
-          </Link>
+          </NavLink>
         </ul>
         <div className='header__login-and-register'>
-          <button onClick={() => goToSignUp()} className='header__sign-up'>
+          <NavLink
+            onClick={() => showCart('false')}
+            className='header__sign-up'
+            to='/sign-up'>
             SIGN UP
-          </button>
-          <button onClick={() => goToLogIn()} className='header__register'>
+          </NavLink>
+          <NavLink
+            onClick={() => showCart('false')}
+            className='header__log-in'
+            to='/login'>
             LOGIN
-          </button>
+          </NavLink>
         </div>
         <div
           data-testid='cart-icon'
           className='header__cart'
-          onClick={() => showCart()}>
+          onClick={() => showCart('toggle')}>
           {items.length > 0 && (
             <div
               data-testid='cart-quantity'
@@ -98,16 +117,18 @@ const Header: React.FC = () => {
           <img className='header__cart-svg' src={cart} alt='cart' />
         </div>
         <div className={dropdown}>
-          <button
-            onClick={() => goToSignUp()}
-            className='header__drop-down-sign-up'>
+          <NavLink
+            onClick={() => setShowMenu(false)}
+            className='header__drop-down-sign-up'
+            to='/sign-up'>
             SIGN UP
-          </button>
-          <button
-            onClick={() => goToLogIn()}
-            className='header__drop-down-register'>
+          </NavLink>
+          <NavLink
+            onClick={() => setShowMenu(false)}
+            className='header__drop-down-log-in'
+            to='/login'>
             LOGIN
-          </button>
+          </NavLink>
           <div className='category-summary'>
             {categories &&
               categories.map((cat, index) => (
@@ -120,7 +141,7 @@ const Header: React.FC = () => {
                   <h6 className='category-summary__category-name'>
                     {cat.category.toUpperCase()}
                   </h6>
-                  <Link
+                  <NavLink
                     onClick={() => setShowMenu(false)}
                     to={`/category/${cat.category}`}
                     className='category-summary__cta'>
@@ -130,7 +151,7 @@ const Header: React.FC = () => {
                       src={arrow}
                       alt=''
                     />
-                  </Link>
+                  </NavLink>
                 </div>
               ))}
           </div>

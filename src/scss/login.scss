@@ -1,15 +1,24 @@
 @import '../App.scss';
 
-.login {
+.login,
+.sign-up {
   height: 100vh;
   display: flex;
   padding: 2rem;
   align-items: center;
   justify-content: center;
+  background-color: $lighest-grey;
+
+  &__heading {
+    margin: 1rem 0;
+  }
 
   &__container {
     max-width: 500px;
     margin: auto;
+    background-color: $white;
+    padding: 2rem;
+    border-radius: 10px;
   }
 
   &__input {

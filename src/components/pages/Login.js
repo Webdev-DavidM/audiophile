@@ -8,18 +8,9 @@ import { useNavigate } from 'react-router-dom';
 import '../../scss/login.scss';
 
 export default function Login() {
-  const { loggedIn, showCart } = useContext(CartContext);
+  const { loggedIn } = useContext(CartContext);
 
   const navigate = useNavigate();
-
-  // let hideCart = useCallback(() => {
-  //   showCart();
-  // }, [showCart]);
-
-  // useEffect(() => {
-  //   hideCart();
-  //   // I will check if the user is logged in and/or there is a cart and display if so
-  // }, [hideCart]);
 
   const validationSchema = yup.object({
     email: yup
@@ -49,6 +40,7 @@ export default function Login() {
   return (
     <div className='login'>
       <div className='login__container'>
+        <h4 className='login__heading'>LOG IN</h4>
         <form onSubmit={formik.handleSubmit}>
           <TextField
             className='login__input'
@@ -75,7 +67,7 @@ export default function Login() {
             helperText={formik.touched.password && formik.errors.password}
           />
           <button className='login__submit-btn' type='submit'>
-            Login
+            LOGIN
           </button>
         </form>
       </div>

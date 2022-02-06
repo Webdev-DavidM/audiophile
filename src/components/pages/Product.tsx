@@ -29,15 +29,6 @@ export default function Product(props: { productData: ProductsObject[] }) {
     setProduct(chosenProduct[0]);
   }, [paramsProduct, props]);
 
-  const goBack = () => {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-    navigate(-1);
-  };
-
   const addToCart = () => {
     if (product) {
       let itemToAdd = {
@@ -68,7 +59,7 @@ export default function Product(props: { productData: ProductsObject[] }) {
 
   return (
     <div className='product'>
-      <span className='product__go-back-button' onClick={() => goBack()}>
+      <span className='product__go-back-button' onClick={() => navigate(-1)}>
         GO BACK
       </span>
       <div className='product__product-details'>

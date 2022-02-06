@@ -18,6 +18,10 @@
   &--open {
     height: 80vh;
     overflow: scroll;
+
+    @include tablet {
+      height: 60vh;
+    }
   }
 
   @include desktop {
@@ -89,9 +93,9 @@
       display: block;
       position: absolute;
       top: 88%;
-      left: -2px;
+      left: 5px;
       border-bottom: 1px solid $dark-orange;
-      width: 100%;
+      width: 90%;
       margin-top: 5px;
       transform: scaleX(0);
       transition: all 0.3s cubic-bezier(0.55, 0, 0, 1);
@@ -102,6 +106,20 @@
       cursor: pointer;
 
       &:after {
+        transform: scaleX(1);
+      }
+    }
+
+    &--active {
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 88%;
+        left: 5px;
+        border-bottom: 1px solid $dark-orange;
+        width: 90%;
+        margin-top: 5px;
         transform: scaleX(1);
       }
     }
@@ -136,7 +154,7 @@
     }
   }
 
-  &__register {
+  &__log-in {
     @include fonts(15px, 24px, 1.3px, 400);
     color: $white;
     padding: 0.4rem;
@@ -196,7 +214,7 @@
   }
 
   &__drop-down-sign-up,
-  &__drop-down-register {
+  &__drop-down-log-in {
     @include block-button-black;
     padding: 0.5rem;
     margin-top: 20px;

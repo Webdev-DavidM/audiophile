@@ -51,6 +51,10 @@
     color: $darker-grey;
   }
 
+  &__quantity {
+    margin-left: auto;
+  }
+
   &__header-and-remove-all-section {
     height: 3rem;
     display: flex;

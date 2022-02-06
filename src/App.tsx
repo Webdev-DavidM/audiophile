@@ -9,12 +9,14 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import data from './data.json';
 import Login from './components/pages/Login';
+import SignUp from './components/pages/SignUp';
 import CartModal from './components/modals/CartModal';
 import { CSSTransition } from 'react-transition-group';
 import { CartContext } from './ context/cartContext';
+import ConfirmationModal from './components/modals/ConfirmationModal';
 
 function App() {
-  const { showCartModal } = useContext(CartContext);
+  const { showCartModal, showConfirmationModal } = useContext(CartContext);
   const { pathname } = useLocation();
   const myRef = useRef(null);
 
@@ -33,6 +35,13 @@ function App() {
         unmountOnExit>
         <CartModal />
       </CSSTransition>
+      <CSSTransition
+        in={showConfirmationModal}
+        timeout={300}
+        classNames='modal'
+        unmountOnExit>
+        <ConfirmationModal />
+      </CSSTransition>
       <Header />
       <Routes>
         <Route path='/' element={<Homepage />} />
@@ -46,6 +55,7 @@ function App() {
           element={<Product productData={data.products} />}
         />
         <Route path='/login' element={<Login />} />
+        <Route path='/sign-up' element={<SignUp />} />
         <Route path='/checkout' element={<Checkout />} />
       </Routes>
       <Footer />
