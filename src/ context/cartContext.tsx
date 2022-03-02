@@ -20,6 +20,7 @@ interface CartContextToGive {
   showCartModal: boolean;
   showConfirmation: (value: boolean) => void;
   showConfirmationModal: boolean;
+  loading: boolean;
 }
 
 export const CartContext = React.createContext<CartContextToGive>({
@@ -34,6 +35,7 @@ export const CartContext = React.createContext<CartContextToGive>({
   showCart: () => null,
   showConfirmationModal: false,
   showConfirmation: () => null,
+  loading: false
 });
 
 // I need to really define what props are coming in to cartContext
@@ -46,6 +48,7 @@ export const CartContextProvider: React.FC<{
   const [showCartModal, setShowCartModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     updateItems([]);
@@ -131,6 +134,7 @@ export const CartContextProvider: React.FC<{
         increaseQuantity: increaseQuantity,
         showConfirmationModal: showConfirmationModal,
         showConfirmation: showConfirmation,
+        loading: loading
       }}>
       {props.children}
     </CartContext.Provider>

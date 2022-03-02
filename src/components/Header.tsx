@@ -46,14 +46,7 @@ const Header: React.FC = () => {
           <img src={hamburger} alt='hamburger menu' />
         </div>
         <div className='header__title'>
-          <NavLink
-            onClick={() => {
-              setShowMenu(true);
-              showCart('false');
-            }}
-            to='/'>
             <img src={logo} alt='audiophile logo' />
-          </NavLink>
         </div>
         <ul className='header__nav-links'>
           <NavLink

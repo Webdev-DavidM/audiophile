@@ -8,6 +8,8 @@ body {
   position: relative;
 }
 
+
+
 input[type='radio'] {
   &:hover {
     cursor:pointer;
@@ -44,10 +46,24 @@ input[type='radio']:checked:after {
   border: 2px solid white;
 }
 
+
+
 .App {
   overflow-x: hidden;
   position: relative;
   height: 100vh;
+
+  &__loading-spinner {
+    position:fixed;
+    z-index: 100;
+    left:50%;
+    top: 50%;
+
+  }
+}
+
+.MuiCircularProgress-circle {
+  color:#ffa500;
 }
 
 .button {

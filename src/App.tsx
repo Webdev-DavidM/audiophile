@@ -14,9 +14,11 @@ import CartModal from './components/modals/CartModal';
 import { CSSTransition } from 'react-transition-group';
 import { CartContext } from './ context/cartContext';
 import ConfirmationModal from './components/modals/ConfirmationModal';
+import PrivateRoute from './helpers/PrivateRoute';
+import { CircularProgress } from '@material-ui/core';
 
 function App() {
-  const { showCartModal, showConfirmationModal } = useContext(CartContext);
+  const { showCartModal, showConfirmationModal, isLoggedIn, loading } = useContext(CartContext);
   const { pathname } = useLocation();
   const myRef = useRef(null);
 
@@ -42,12 +44,16 @@ function App() {
         classNames="modal"
         unmountOnExit
       >
-        <ConfirmationModal />
+      <ConfirmationModal />
       </CSSTransition>
       <Header />
+      {loading &&       
+      <div className="App__loading-spinner">
+        <CircularProgress />
+      </div>}
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout" element={<PrivateRoute loggedIn={isLoggedIn}><Checkout /></PrivateRoute>} />
         <Route
           path="/category/:category"
           element={<Category productData={data.products} />}

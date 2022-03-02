@@ -23,7 +23,6 @@ export default function Product(props: { productData: ProductsObject[] }) {
   useEffect(() => {
     let { productData } = props;
 
-    console.log('hit');
     let chosenProduct = productData.filter(
       (product) => product.slug === paramsProduct.slug
     );
@@ -44,6 +43,7 @@ export default function Product(props: { productData: ProductsObject[] }) {
         setAddedToCart(false);
       }, 4000);
     }
+    // I will also add the items to local storage here in this function
   };
 
   const updateQuantity = (operator: string) => {
