@@ -18,15 +18,27 @@ import PrivateRoute from './helpers/PrivateRoute';
 import { CircularProgress } from '@material-ui/core';
 
 function App() {
-  const { showCartModal, showConfirmationModal, isLoggedIn, loading } = useContext(CartContext);
+  const { showCartModal, showConfirmationModal, isLoggedIn, loading, items, addProduct } = useContext(CartContext);
   const { pathname } = useLocation();
   const myRef = useRef(null);
 
-  // below makes each page loaded scroll to the top
   useEffect(() => {
+      if (items.length === 0) {
+        let localStorageItemKeys = Object.keys(localStorage);
+        let itemsToAdd: any = []
+        if (localStorageItemKeys.length > 0) {
+          localStorageItemKeys.map((keyName) => {
+            let item = localStorage.getItem(`${keyName}`);
+            let result = item !== null && JSON.parse(item);
+            return itemsToAdd.push(result)
+           })
+           addProduct(itemsToAdd)
+        }
+      }
+    // below makes each page loaded scroll to the top
     // @ts-ignore: Object is possibly 'null'.
     myRef.current.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, items, addProduct]);
 
   return (
     <div id="top" ref={myRef} className="App">

@@ -48,7 +48,7 @@ export const CartContextProvider: React.FC<{
   const [showCartModal, setShowCartModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     updateItems([]);
@@ -56,6 +56,10 @@ export const CartContextProvider: React.FC<{
   }, []);
 
   const removeAllProducts = () => {
+    let localStorageItemKeys = Object.keys(localStorage);
+    if (localStorageItemKeys.length > 0) {
+      localStorageItemKeys.map((itemKey) => localStorage.removeItem(`${itemKey}`)) 
+    }
     updateItems([]);
   };
 
