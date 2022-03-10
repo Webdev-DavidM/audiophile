@@ -21,7 +21,10 @@ export default function Product(props: { productData: ProductsObject[] }) {
   let [addedToCart, setAddedToCart] = useState(false);
 
   useEffect(() => {
+  
     let { productData } = props;
+    
+
 
     let chosenProduct = productData.filter(
       (product) => product.slug === paramsProduct.slug
@@ -75,6 +78,8 @@ export default function Product(props: { productData: ProductsObject[] }) {
       setQuantity((PrevQuantity) => (PrevQuantity -= 1));
     }
   };
+
+  product && console.log(product.gallery[0].first.mobile)
 
   return (
     <div className="product">
@@ -176,7 +181,7 @@ export default function Product(props: { productData: ProductsObject[] }) {
           </div>
         </div>
       </div>
-      {product && <ImageGallery imageGallery={product.gallery} />}
+      {product && <ImageGallery imageGallery={product.gallery[0]} />}
 
       <h3 className="product__title product__title--center">
         YOU MAY ALSO LIKE

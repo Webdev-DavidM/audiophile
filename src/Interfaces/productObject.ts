@@ -38,7 +38,7 @@ export type ProductsObject = {
       tablet: string;
       desktop: string;
     };
-  };
+  }[];
   others: {
     slug: string;
     name: string;

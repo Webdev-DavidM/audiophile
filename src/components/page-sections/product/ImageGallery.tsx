@@ -1,6 +1,6 @@
 import React from "react";
 
-interface ImageGallery {
+interface ImageGalleryTS {
   first: {
     mobile: string;
     tablet: string;
@@ -18,8 +18,9 @@ interface ImageGallery {
   };
 }
 
-export default function ImageGallery(props: { imageGallery: ImageGallery }) {
+export default function ImageGallery(props: { imageGallery: ImageGalleryTS }) {
   const { imageGallery } = props;
+  console.log(imageGallery)
   return (
     <div data-test="images-section" className="product__image-gallery-section">
       <div className="product__gallery-image-container">

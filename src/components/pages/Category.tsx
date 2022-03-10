@@ -18,6 +18,7 @@ const Category = (props: { productData: ProductsObject[] }) => {
     setProducts(chosenProducts);
   }, [cat.category, productData]);
 
+
   return (
     <>
       <div className="category">
