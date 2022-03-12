@@ -5,6 +5,12 @@
   margin: 100px 2rem 2rem;
   max-width: 1200px;
 
+  &__not-found {
+    text-align:center;
+    font-size: 25px;
+    color: $warning-red
+  }
+
   @include tablet {
     margin: 150px auto 2rem;
     padding: 0 3rem 0;

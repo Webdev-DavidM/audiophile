@@ -7,8 +7,6 @@ import Category from './components/pages/Category';
 import Product from './components/pages/Product';
 import Header from './components/Header';
 import Footer from './components/Footer';
-// import data from './data.json';
-import { getAllProductsAndCategories } from './graphQL/getAllProducts';
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
 import CartModal from './components/modals/CartModal';
@@ -17,37 +15,31 @@ import { CartContext } from './ context/cartContext';
 import ConfirmationModal from './components/modals/ConfirmationModal';
 import PrivateRoute from './helpers/PrivateRoute';
 import { CircularProgress } from '@material-ui/core';
-import { useQuery } from '@apollo/client';
 
 function App() {
-  const { showCartModal, showConfirmationModal, isLoggedIn, items, addProduct } = useContext(CartContext);
+  const { showCartModal, showConfirmationModal, isLoggedIn, items, addProduct, loadingPage } = useContext(CartContext);
   const { pathname } = useLocation();
   const myRef = useRef(null);
-  const { loading, error, data } = useQuery(getAllProductsAndCategories)
  
-  data && console.log(data.getAllProducts)
-  
-
-
-
-
   useEffect(() => {
-      // if (items.length === 0) {
-      //   let localStorageItemKeys = Object.keys(localStorage);
-      //   let itemsToAdd: any = []
-      //   if (localStorageItemKeys.length > 0) {
-      //     localStorageItemKeys.map((keyName) => {
-      //       let item = localStorage.getItem(`${keyName}`);
-      //       let result = item !== null && JSON.parse(item);
-      //       return itemsToAdd.push(result)
-      //      })
-      //      addProduct(itemsToAdd)
-      //   }
-      // }
-    // below makes each page loaded scroll to the top
+      if (items.length === 0) {
+        let localStorageItemKeys = Object.keys(localStorage);
+        let itemsToAdd: any = []
+        if (localStorageItemKeys.length > 0) {
+          localStorageItemKeys.map((keyName) => {
+            let item = localStorage.getItem(`${keyName}`);
+            let result = item !== null && JSON.parse(item);
+            return itemsToAdd.push(result)
+           })
+           addProduct(itemsToAdd)
+        }
+      }
+  //   below makes each page loaded scroll to the top
     // @ts-ignore: Object is possibly 'null'.
     myRef.current.scrollTo(0, 0);
   }, [pathname, items, addProduct]);
+
+  
 
   return (
     <div id="top" ref={myRef} className="App">
@@ -68,30 +60,25 @@ function App() {
       <ConfirmationModal />
       </CSSTransition>
       <Header />
-      {loading &&       
+      {loadingPage &&       
       <div className="App__loading-spinner">
         <CircularProgress />
       </div>}
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/checkout" element={<PrivateRoute loggedIn={isLoggedIn}><Checkout /></PrivateRoute>} />
-        {data &&
           <Route
           path="/category/:category"
-          element={<Category productData={data && data.getAllProducts} />}
+          element={<Category />}
         />
-        }
-        {data && 
          <Route
          path="/product/:slug"
-         element={<Product productData={data && data.getAllProducts} />}
+         element={<Product />}
        />
-        }
-      
-       
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="*" element={<Homepage />} />
       </Routes>
       <Footer />
       

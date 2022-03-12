@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { ProductsObject } from '../../Interfaces/productObject';
 import { Link } from 'react-router-dom';
 import '../../scss/categorypage.scss';
+import { getAllProductsByCategory} from '../../graphQL/getCategory'
 import CategorySummary from '../sections-used-on-multiple-pages/CategorySummary';
+import { useQuery } from '@apollo/client';
+import {CartContext} from '../../ context/cartContext'
 import BottomCopySection from '../sections-used-on-multiple-pages/BottomCopySection';
 
-const Category = (props: { productData: ProductsObject[] }) => {
-  let [products, setProducts] = useState<ProductsObject[] | []>([]);
-  let cat = useParams();
-  let { productData } = props;
 
-  useEffect(() => {
-    let chosenProducts = productData.filter(
-      (product) => product.category === cat.category
-    );
-    setProducts(chosenProducts);
-  }, [cat.category, productData]);
+const Category = () => {
+  let cat = useParams();
+  console.log(cat.category)
+  const { setLoadingPage } = useContext(CartContext);
+  const { loading, error, data } = useQuery( getAllProductsByCategory, {variables: { category : cat.category}});
+  loading ? setLoadingPage(true) : setLoadingPage(false)
+  data && console.log(data.getAllProductsByCategory)
 
 
   return (
@@ -28,8 +28,8 @@ const Category = (props: { productData: ProductsObject[] }) => {
           </h3>
         </div>
 
-        {products.length > 0 &&
-          products.map((product, index) => (
+        {data &&
+          data.getAllProductsByCategory.map((product:any, index:any) => (
             <div key={index} className="category__product">
               <div
                 data-test="category-image"

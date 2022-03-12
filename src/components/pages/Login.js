@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useCallback } from 'react';
+import React, { useContext, useState } from 'react';
 import { CartContext } from '../../ context/cartContext';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -8,9 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import '../../scss/login.scss';
 
 export default function Login() {
-  const { loggedIn } = useContext(CartContext);
-
+  const { loggedIn, setLoadingPage } = useContext(CartContext);
   const navigate = useNavigate();
+  let [loginStatus, setLoginStatus] = useState('');
 
   const validationSchema = yup.object({
     email: yup
@@ -30,25 +29,63 @@ export default function Login() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      // connect to the back end //
-
-      loggedIn(true);
-      navigate(-1);
+      let { email, password } = values;
+      setLoadingPage(true);
+      try {
+        let result = await fetch('http://localhost:4000/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            query: `
+            query {
+            logIn(email: "${email}", password: "${password}") {
+                code
+                success
+                message
+              }
+            }
+          `,
+          }),
+        });
+        result = await result.json();
+        if (result.data.logIn.code === 200) {
+          loggedIn(true);
+          setLoginStatus(
+            'log in successful, you will returned to the homepage shortly'
+          );
+          setLoadingPage(false);
+          setTimeout(() => {
+            navigate(-1);
+          }, 3000);
+        }
+        if (result.data.logIn.code === 404) {
+          setLoadingPage(false);
+          setLoginStatus('No user found');
+        }
+        if (result.data.logIn.code === 401) {
+          setLoadingPage(false);
+          setLoginStatus('Password incorrect');
+        }
+      } catch (err) {
+        console.log(err);
+      }
     },
   });
 
   return (
-    <div className='login'>
-      <div className='login__container'>
-        <h4 className='login__heading'>LOG IN</h4>
+    <div className="login">
+      <div className="login__container">
+        <h4 className="login__heading">LOG IN</h4>
         <form onSubmit={formik.handleSubmit}>
           <TextField
-            className='login__input'
+            className="login__input"
             fullWidth
-            variant='outlined'
-            id='email'
-            name='email'
-            label='Email'
+            variant="outlined"
+            id="email"
+            name="email"
+            label="Email"
             value={formik.values.email}
             onChange={formik.handleChange}
             error={formik.touched.email && Boolean(formik.errors.email)}
@@ -56,20 +93,21 @@ export default function Login() {
           />
           <TextField
             fullWidth
-            variant='outlined'
-            id='password'
-            name='password'
-            label='Password'
-            type='password'
+            variant="outlined"
+            id="password"
+            name="password"
+            label="Password"
+            type="password"
             value={formik.values.password}
             onChange={formik.handleChange}
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
-          <button className='login__submit-btn' type='submit'>
+          <button className="login__submit-btn" type="submit">
             LOGIN
           </button>
         </form>
+        {loginStatus && <p className="login__status">{loginStatus}</p>}
       </div>
     </div>
   );

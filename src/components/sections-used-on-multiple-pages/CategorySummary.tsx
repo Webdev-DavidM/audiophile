@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../../scss/category-summary.scss";
 import arrow from "../../assets/shared/icon-arrow-right.svg";
 import { Link } from "react-router-dom";
-import data from "../../data.json";
+import { useQuery } from '@apollo/client';
+import { getAllCategorySummaryImages } from '../../graphQL/getAllCategorySummaryImages';
 
 interface Category {
   category: string;
@@ -10,17 +11,24 @@ interface Category {
 }
 
 export default function CategorySummary() {
-  const [categories, setCategories] = useState<Category[] | []>([]);
-
-  useEffect(() => {
-    let cats = JSON.parse(JSON.stringify(data));
-    setCategories(cats["category-images"]);
-  }, []);
+  const { loading, error, data } = useQuery(getAllCategorySummaryImages);
+  let categoryNames:any = []
+  let categoriesToDisplay: Category[] = []
+  
+  if (data) { 
+    categoriesToDisplay = data.getAllProducts.reduce((categoryArray:any, category:any) => {
+      if (!categoryNames.includes(category.categorySummaryImages.category)) {
+        categoryArray.push(category.categorySummaryImages);
+        categoryNames.push(category.categorySummaryImages.category)
+      }
+      return categoryArray;
+    }, []);
+  }
 
   return (
     <div className="category-summary">
-      {categories &&
-        categories.map((cat, index) => (
+      {data &&
+        categoriesToDisplay.map((cat: Category, index) => (
           <div key={index} className="category-summary__item">
             <img className="category-summary__image" src={cat.image} alt="" />
             <h6 className="category-summary__category-name">

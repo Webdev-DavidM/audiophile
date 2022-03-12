@@ -8,28 +8,22 @@ import { ProductsObject } from '../../Interfaces/productObject';
 import Carousel from '../sections-used-on-multiple-pages/Carousel';
 import ImageGallery from '../page-sections/product/ImageGallery';
 import { CartContext } from '../../ context/cartContext';
+import { getProduct} from '../../graphQL/getProduct'
+import { useQuery } from '@apollo/client';
 import BottomCopySection from '../sections-used-on-multiple-pages/BottomCopySection';
 
-export default function Product(props: { productData: ProductsObject[] }) {
-  const { items, addProduct } = useContext(CartContext);
-
+export default function Product() {
+  const { items, addProduct, setLoadingPage } = useContext(CartContext);
   let paramsProduct = useParams();
+  const { loading, error, data } = useQuery(getProduct, {variables: { slug : paramsProduct.slug}});
+  loading ? setLoadingPage(true) : setLoadingPage(false)
   let navigate = useNavigate();
   let [quantity, setQuantity] = useState<number>(1);
   let [product, setProduct] = useState<ProductsObject | undefined>(undefined);
-  let [error, setError] = useState<boolean>(false);
+  let [quantityError, setQuantityError] = useState<boolean>(false);
   let [addedToCart, setAddedToCart] = useState(false);
 
   useEffect(() => {
-  
-    let { productData } = props;
-    
-
-
-    let chosenProduct = productData.filter(
-      (product) => product.slug === paramsProduct.slug
-    );
-    setProduct(chosenProduct[0]);
        // I will also add the items to local storage here in this function
        if (items.length !== 0) {
         // let localStorageItems = Object.keys(localStorage);
@@ -45,10 +39,11 @@ export default function Product(props: { productData: ProductsObject[] }) {
       //   // return localStorage.setItem(`item0`, JSON.stringify(items));
       // }
       //clear the product state when the product component unmounts
+      data && setProduct(data.getProduct.product)  
       return () => {
         setProduct(undefined)
       }
-  }, [paramsProduct, props, items]);
+  }, [paramsProduct, data, items]);
 
   const addToCart = () => {
     if (product) {
@@ -64,52 +59,54 @@ export default function Product(props: { productData: ProductsObject[] }) {
         setAddedToCart(false);
       }, 4000);
     }
-
   };
 
   const updateQuantity = (operator: string) => {
     if (product && operator === '+' && quantity === product.stock) {
-      return setError(true);
+      return setQuantityError(true);
     }
     if (operator === '+') {
       setQuantity((PrevQuantity) => (PrevQuantity += 1));
     } else {
-      setError(false);
+      setQuantityError(false);
       setQuantity((PrevQuantity) => (PrevQuantity -= 1));
     }
   };
 
-  product && console.log(product.gallery[0].first.mobile)
+
 
   return (
     <div className="product">
+      
       <span className="product__go-back-button" onClick={() => navigate(-1)}>
         GO BACK
       </span>
-      <div className="product__product-details">
+      {data?.getProduct.code === 200 ?   <>   <div className="product__product-details">
         <div className="product__image-container">
-          {product !== undefined && (
-            //note that it will only work in this order so put the two media queries tbalet last
+          
+            
             <picture>
               <source
                 className="product__image"
                 media="(max-width: 767px)"
-                srcSet={`${product.image.mobile}`}
+                srcSet={`${data.getProduct.product.image.mobile}`}
               />
               <source
                 className="product__image"
                 media="(min-width: 1024px)"
-                srcSet={`${product.image.mobile}`}
+                srcSet={`${data.getProduct.product.image.mobile}`}
               />
               <source
                 className="product__image"
                 media="(min-width: 768px), (max-width: 1023px)"
-                srcSet={`${product.image.tablet}`}
+                srcSet={`${data.getProduct.product.image.tablet}`}
               />
 
-              <img className="product__image" src={`${product.image.mobile}`} />
+              <img className="product__image" src={`${data.getProduct.product.image.mobile}`} />
             </picture>
-          )}
+          
+        
+        
         </div>
         <div className="product__copy-container">
           {product && product.new && (
@@ -117,10 +114,10 @@ export default function Product(props: { productData: ProductsObject[] }) {
           )}
 
           <h3 className="product__title">
-            {product && product.name.toUpperCase()}
+            {data && data.getProduct.product.name.toUpperCase()}
           </h3>
-          <p className="product__copy">{product && product.description}</p>
-          <h3 className="product__price">£ {product && product.price}</h3>
+          <p className="product__copy">{data && data.getProduct.product.description}</p>
+          <h3 className="product__price">£ {data && data.getProduct.product.price}</h3>
           <div className="product__buttons-section">
             <div className="product__amount-button-section">
               <button
@@ -149,7 +146,7 @@ export default function Product(props: { productData: ProductsObject[] }) {
             </button>
           </div>
           <div className="product__warning">
-            {error && 'Maximum in stock selected'}
+            {quantityError && 'Maximum in stock selected'}
           </div>
           <div className="product__added-to-cart">
             {addedToCart && 'Added to cart'}
@@ -159,15 +156,15 @@ export default function Product(props: { productData: ProductsObject[] }) {
       <div className="product__features-and-in-the-box-container">
         <div className="product__features-section">
           <h3 className="product__title">FEATURES</h3>
-          <p className="product__copy">{product && product.features}</p>
+          <p className="product__copy">{data && data.getProduct.product.features}</p>
         </div>
         <div className="product__in-the-box-section">
           <h3 className="product__title product__title--half-width">
             IN THE BOX
           </h3>
           <div className="product__in-the-box-list">
-            {product &&
-              product.items.map((item, index) => (
+            {data &&
+              data.getProduct.product.items.map((item:any, index:any) => (
                 <div
                   key={index}
                   className="product__copy product__copy--no-margin-top"
@@ -181,14 +178,15 @@ export default function Product(props: { productData: ProductsObject[] }) {
           </div>
         </div>
       </div>
-      {product && <ImageGallery imageGallery={product.gallery[0]} />}
+      {data && <ImageGallery imageGallery={data.getProduct.product.gallery[0]} />}
 
       <h3 className="product__title product__title--center">
         YOU MAY ALSO LIKE
       </h3>
       <div className="product__carousel">
-        {product && <Carousel products={product.others} />}
-      </div>
+        {data && <Carousel products={data.getProduct.product.others} />}
+      </div></>: <p className="product__not-found">Product not found</p>}
+ 
       <CategorySummary />
       <div className="product__carousel-section"></div>
       <BottomCopySection />

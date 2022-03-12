@@ -13,6 +13,11 @@
     margin: 1rem 0;
   }
 
+  &__status {
+    color: $dark-orange;
+    text-align: center;
+  }
+
   &__container {
     max-width: 500px;
     margin: auto;
