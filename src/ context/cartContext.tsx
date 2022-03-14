@@ -73,8 +73,7 @@ export const CartContextProvider: React.FC<{
       let result =   await getCategoriesFromAPI();
       setCategories(result)
     }
-    catsFromAPI()
-
+    catsFromAPI();
   }, []);
 
   const removeAllProducts = () => {

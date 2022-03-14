@@ -25,18 +25,10 @@ export default function Product() {
   useEffect(() => {
        // I will also add the items to local storage here in this function
        if (items.length !== 0) {
-        // let localStorageItems = Object.keys(localStorage);
-        // localStorageItems.map((item) => {
-        //   return item !== 'userInfo' && localStorage.removeItem(`${item}`);
-        // });
         items.map((item, index) => {
           return localStorage.setItem(`item${index}`, JSON.stringify(item));
         });
       }
-      // else {
-      //   items.map((item) => localStorage.setItem(`item0`, JSON.stringify(items)))
-      //   // return localStorage.setItem(`item0`, JSON.stringify(items));
-      // }
       //clear the product state when the product component unmounts
       data && setProduct(data.getProduct.product)  
       return () => {
