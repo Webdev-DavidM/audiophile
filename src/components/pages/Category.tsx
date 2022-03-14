@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { ProductsObject } from '../../Interfaces/productObject';
 import { Link } from 'react-router-dom';
 import '../../scss/categorypage.scss';
 import { getAllProductsByCategory} from '../../graphQL/getCategory'

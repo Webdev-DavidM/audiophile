@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useContext} from "react";
 import "../../scss/category-summary.scss";
 import arrow from "../../assets/shared/icon-arrow-right.svg";
 import { Link } from "react-router-dom";
-import { useQuery } from '@apollo/client';
-import { getAllCategorySummaryImages } from '../../graphQL/getAllCategorySummaryImages';
+import { CartContext } from "../../ context/cartContext";
 
 interface Category {
   category: string;
@@ -11,24 +10,12 @@ interface Category {
 }
 
 export default function CategorySummary() {
-  const { loading, error, data } = useQuery(getAllCategorySummaryImages);
-  let categoryNames:any = []
-  let categoriesToDisplay: Category[] = []
-  
-  if (data) { 
-    categoriesToDisplay = data.getAllProducts.reduce((categoryArray:any, category:any) => {
-      if (!categoryNames.includes(category.categorySummaryImages.category)) {
-        categoryArray.push(category.categorySummaryImages);
-        categoryNames.push(category.categorySummaryImages.category)
-      }
-      return categoryArray;
-    }, []);
-  }
+  const {categories} = useContext(CartContext)
 
   return (
     <div className="category-summary">
-      {data &&
-        categoriesToDisplay.map((cat: Category, index) => (
+      {categories &&
+        categories.map((cat: Category, index) => (
           <div key={index} className="category-summary__item">
             <img className="category-summary__image" src={cat.image} alt="" />
             <h6 className="category-summary__category-name">

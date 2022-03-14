@@ -110,7 +110,11 @@
   &__product-cta {
     @include block-button-orange;
     width: 10rem;
-    margin: 2rem auto;
+    margin: 2rem auto 8rem auto;
+
+    @include tablet {
+      margin: 2rem auto;
+    }
 
     @include desktop {
       margin: 2rem 0;

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { NavLink, Navigate } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 import '../scss/header.scss';
 
 /* Note when using typescript below is the only import style which will work is below, 
@@ -8,26 +8,13 @@ file to include svg and jpg and any other files */
 import hamburger from '../assets/shared/icon-hamburger.svg';
 import logo from '../assets/shared/logo.svg';
 import cart from '../assets/shared/icon-cart.svg';
-import data from '../data.json';
 import arrow from '../assets/shared/icon-arrow-right.svg';
 import { CartContext } from '../ context/cartContext';
-import { useNavigate } from 'react-router-dom';
 
-interface Category {
-  category: string;
-  image: string;
-}
 
 const Header: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const [categories, setCategories] = useState<Category[] | []>([]);
-  const { items, showCart, showCartModal } = useContext(CartContext);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    let cats = JSON.parse(JSON.stringify(data));
-    setCategories(cats['category-images']);
-  }, []);
+  const { items, showCart, categories } = useContext(CartContext);
 
   let headerMenu = showMenu ? `header header--open` : `header`;
 

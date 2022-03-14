@@ -1,11 +1,18 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useState, useEffect } from 'react';
+import {getCategoriesFromAPI} from '../helpers/getCategoriesFromAPI'
+
 
 interface Items {
   name: string;
   value: number;
   quantity: number;
   image: string;
+}
+
+interface Category {
+  image:string;
+  category: string
 }
 
 interface CartContextToGive {
@@ -22,7 +29,7 @@ interface CartContextToGive {
   showConfirmationModal: boolean;
   loadingPage: boolean;
   setLoadingPage: (value: boolean) => void;
-
+  categories: Category[] | [];
 }
 
 export const CartContext = React.createContext<CartContextToGive>({
@@ -38,7 +45,8 @@ export const CartContext = React.createContext<CartContextToGive>({
   showConfirmationModal: false,
   showConfirmation: () => null,
   loadingPage: false,
-  setLoadingPage: () => null
+  setLoadingPage: () => null,
+  categories: [],
 
 });
 
@@ -53,10 +61,20 @@ export const CartContextProvider: React.FC<{
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loadingPage, setLoadingPage] = useState(false)
+  const [categories, setCategories] = useState<Category[] | []>([])
 
-  useEffect(() => {
+  
+
+  useEffect( () => {
     updateItems([]);
     // I will check if the user is logged in and/or there is a cart and display if so
+
+    let catsFromAPI: any = async () => {
+      let result =   await getCategoriesFromAPI();
+      setCategories(result)
+    }
+    catsFromAPI()
+
   }, []);
 
   const removeAllProducts = () => {
@@ -148,6 +166,7 @@ export const CartContextProvider: React.FC<{
         showConfirmation: showConfirmation,
         loadingPage: loadingPage,
         setLoadingPage: loading,
+        categories: categories,
       }}>
       {props.children}
     </CartContext.Provider>
