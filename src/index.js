@@ -7,7 +7,7 @@ import ScrollToTop from './scrollToTop';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'https://audio-first.herokuapp.com/graphql',
+  uri: '/graphql',
   cache: new InMemoryCache(),
 });
 
