@@ -20,7 +20,6 @@ interface ImageGalleryTS {
 
 export default function ImageGallery(props: { imageGallery: ImageGalleryTS }) {
   const { imageGallery } = props;
-  console.log(imageGallery)
   return (
     <div data-test="images-section" className="product__image-gallery-section">
       <div className="product__gallery-image-container">
@@ -43,6 +42,7 @@ export default function ImageGallery(props: { imageGallery: ImageGalleryTS }) {
           <img
             className="product__gallery-image"
             src={imageGallery.first.tablet}
+            alt="product"
           />
         </picture>
       </div>
@@ -66,6 +66,7 @@ export default function ImageGallery(props: { imageGallery: ImageGalleryTS }) {
           <img
             className="product__gallery-image"
             src={imageGallery.second.tablet}
+            alt="product"
           />
         </picture>
       </div>
@@ -89,6 +90,7 @@ export default function ImageGallery(props: { imageGallery: ImageGalleryTS }) {
           <img
             className="product__gallery-image"
             src={imageGallery.third.tablet}
+            alt="product"
           />
         </picture>
       </div>

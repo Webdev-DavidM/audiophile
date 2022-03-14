@@ -9,7 +9,7 @@ export default function ProductHighlight() {
         <img
           className="homepage__product-highlight-image"
           src="/assets/shared/desktop/image-speakers.png"
-          alt=""
+          alt="product"
         />
       </div>
       <div className="homepage__product-highlight-copy-section">

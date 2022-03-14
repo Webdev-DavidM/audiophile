@@ -29,7 +29,7 @@ export default function CheckoutSummary() {
           items.map((item) => (
             <>
               <div key={item.name} className="cart-modal__item">
-                <img src={item.image} alt="" className="cart-modal__image" />
+                <img src={item.image} alt="product" className="cart-modal__image" />
                 <div className="cart-modal__item-details">
                   <div
                     data-testid="product-name"

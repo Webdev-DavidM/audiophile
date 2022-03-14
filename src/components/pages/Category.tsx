@@ -12,11 +12,13 @@ import BottomCopySection from '../sections-used-on-multiple-pages/BottomCopySect
 
 const Category = () => {
   let cat = useParams();
-  console.log(cat.category)
   const { setLoadingPage } = useContext(CartContext);
   const { loading, error, data } = useQuery( getAllProductsByCategory, {variables: { category : cat.category}});
-  loading ? setLoadingPage(true) : setLoadingPage(false)
-  data && console.log(data.getAllProductsByCategory)
+
+
+  useEffect(() => {
+    loading ? setLoadingPage(true) : setLoadingPage(false)
+  }, [loading, setLoadingPage]);
 
 
   return (
@@ -74,9 +76,8 @@ const Category = () => {
               </div>
             </div>
           ))}
-
-        <CategorySummary />
-        <BottomCopySection />
+          <CategorySummary />  
+          <BottomCopySection />
       </div>
     </>
   );

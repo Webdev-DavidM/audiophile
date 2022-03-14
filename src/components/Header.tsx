@@ -129,7 +129,7 @@ const Header: React.FC = () => {
                   <img
                     className='category-summary__image'
                     src={cat.image}
-                    alt=''
+                    alt="product"
                   />
                   <h6 className='category-summary__category-name'>
                     {cat.category.toUpperCase()}
@@ -142,7 +142,7 @@ const Header: React.FC = () => {
                     <img
                       className='category-summary__arrow'
                       src={arrow}
-                      alt=''
+                      alt="product"
                     />
                   </NavLink>
                 </div>

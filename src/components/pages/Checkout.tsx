@@ -38,7 +38,6 @@ export default function Checkout() {
     onSubmit: (values) => {
       showConfirmation(true);
       removeAllProducts();
-      console.log('submitted order', values, paymentMethod);
     },
   });
 

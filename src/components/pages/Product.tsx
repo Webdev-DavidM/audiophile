@@ -16,7 +16,6 @@ export default function Product() {
   const { items, addProduct, setLoadingPage } = useContext(CartContext);
   let paramsProduct = useParams();
   const { loading, error, data } = useQuery(getProduct, {variables: { slug : paramsProduct.slug}});
-  loading ? setLoadingPage(true) : setLoadingPage(false)
   let navigate = useNavigate();
   let [quantity, setQuantity] = useState<number>(1);
   let [product, setProduct] = useState<ProductsObject | undefined>(undefined);
@@ -44,6 +43,10 @@ export default function Product() {
         setProduct(undefined)
       }
   }, [paramsProduct, data, items]);
+
+  useEffect(() => {
+    loading ? setLoadingPage(true) : setLoadingPage(false)
+  }, [loading, setLoadingPage]);
 
   const addToCart = () => {
     if (product) {

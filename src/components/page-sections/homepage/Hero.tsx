@@ -25,7 +25,7 @@ export default function Hero() {
           <img
             className="homepage__image"
             src="/assets/home/mobile/image-header.jpg"
-            alt=""
+            alt="hero product"
           />
         </picture>
       </div>

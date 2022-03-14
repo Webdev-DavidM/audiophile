@@ -52,21 +52,19 @@ export default function Login() {
         result = await result.json();
         if (result.data.logIn.code === 200) {
           loggedIn(true);
-          setLoginStatus(
-            'log in successful, you will returned to the homepage shortly'
-          );
+          setLoginStatus(`${result.data.logIn.message}`);
           setLoadingPage(false);
           setTimeout(() => {
-            navigate(-1);
+            navigate('/');
           }, 3000);
         }
         if (result.data.logIn.code === 404) {
           setLoadingPage(false);
-          setLoginStatus('No user found');
+          setLoginStatus(`${result.data.logIn.message}`);
         }
         if (result.data.logIn.code === 401) {
           setLoadingPage(false);
-          setLoginStatus('Password incorrect');
+          setLoginStatus(`${result.data.logIn.message}`);
         }
       } catch (err) {
         console.log(err);
