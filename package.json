@@ -2,7 +2,7 @@
   "name": "audiophile1",
   "version": "0.1.0",
   "private": true,
-  "home": "https://audio-first.herokuapp.com/",
+  "home": "https://pedantic-kowalevski-87c079.netlify.app/",
   "dependencies": {
     "@apollo/client": "^3.5.10",
     "@emotion/react": "^11.8.1",
