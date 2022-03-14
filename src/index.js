@@ -7,13 +7,13 @@ import ScrollToTop from './scrollToTop';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  uri: 'https://audio-first.herokuapp.com/',
   cache: new InMemoryCache(),
 });
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <BrowserRouter basename="https://audio-first.herokuapp.com/">
+    <BrowserRouter basename="/">
       <ScrollToTop>
         <CartContextProvider item={''}>
           <App />
