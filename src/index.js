@@ -13,7 +13,7 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename="https://audio-first.herokuapp.com/">
       <ScrollToTop>
         <CartContextProvider item={''}>
           <App />
