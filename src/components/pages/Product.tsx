@@ -179,7 +179,7 @@ export default function Product() {
         YOU MAY ALSO LIKE
       </h3>
       <div className="product__carousel">
-        {data && <Carousel products={data.getProduct.product.others} />}
+        {!loading && data && <Carousel products={data.getProduct.product.others} />}
       </div></>: <p className="product__not-found">Product not found</p>}
  
       <CategorySummary />
