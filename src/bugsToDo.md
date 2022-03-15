@@ -1,2 +1,3 @@
-app page local storage not working
+jquery carousel not working
+go back button not working
 
