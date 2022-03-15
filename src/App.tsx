@@ -66,19 +66,19 @@ function App() {
       </div>}
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/checkout" element={<PrivateRoute loggedIn={isLoggedIn}><Checkout /></PrivateRoute>} />
+        <Route path="/audiophile/checkout" element={<PrivateRoute loggedIn={isLoggedIn}><Checkout /></PrivateRoute>} />
           <Route
-          path="/category/:category"
+          path="/audiophile/category/:category"
           element={<Category />}
         />
          <Route
-         path="/product/:slug"
+         path="/audiophile/product/:slug"
          element={<Product />}
        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="*" element={<Homepage />} />
+        <Route path="/audiophile//login" element={<Login />} />
+        <Route path="/audiophile/sign-up" element={<SignUp />} />
+        <Route path="/audiophile/checkout" element={<Checkout />} />
+        <Route path="/audiophile/*" element={<Homepage />} />
       </Routes>
       <Footer />
       
