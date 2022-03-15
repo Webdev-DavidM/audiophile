@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../../ context/cartContext';
 import TextField from '@material-ui/core/TextField';
-import { useFormik } from 'formik';
+import { useFormik, Form } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import '../../scss/login.scss';
@@ -77,7 +77,7 @@ export default function Login() {
     <div className="login">
       <div className="login__container">
         <h4 className="login__heading">LOG IN</h4>
-        <form onSubmit={formik.handleSubmit}>
+        <Form onSubmit={formik.handleSubmit}>
           <TextField
             className="login__input"
             fullWidth
@@ -109,7 +109,7 @@ export default function Login() {
           >
             LOGIN
           </button>
-        </form>
+        </Form>
         {loginStatus && <p className="login__status">{loginStatus}</p>}
       </div>
     </div>
