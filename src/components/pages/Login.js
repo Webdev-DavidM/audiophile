@@ -28,7 +28,8 @@ export default function Login() {
       password: '',
     },
     validationSchema: validationSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values, e) => {
+      e.preventDefault();
       let { email, password } = values;
       setLoadingPage(true);
       try {
@@ -101,7 +102,10 @@ export default function Login() {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
-          <button className="login__submit-btn" type="submit">
+          <button
+            className="login__submit-btn"
+            onSubmit={(e) => formik.onSubmit(e)}
+          >
             LOGIN
           </button>
         </form>
