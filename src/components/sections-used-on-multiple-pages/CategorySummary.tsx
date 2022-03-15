@@ -17,7 +17,7 @@ export default function CategorySummary() {
       {categories &&
         categories.map((cat: Category, index) => (
           <div key={index} className="category-summary__item">
-            <img className="category-summary__image" src={`${process.env.PUBLIC_URL}/cat.image`} alt="" />
+            <img className="category-summary__image" src={`${process.env.PUBLIC_URL}/${cat.image}`} alt="" />
             <h6 className="category-summary__category-name">
               {cat.category.toUpperCase()}
             </h6>
