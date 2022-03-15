@@ -16,16 +16,6 @@
     padding: 0 3rem 0;
   }
 
-  &__go-back-button {
-    color: $darker-grey;
-    transition: color 0.3s ease-in-out;
-
-    &:hover {
-      cursor: pointer;
-      color: $dark-orange;
-    }
-  }
-
   &__title {
     &--half-width {
       margin-bottom: 1rem;

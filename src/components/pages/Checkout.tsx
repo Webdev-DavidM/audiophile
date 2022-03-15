@@ -43,9 +43,6 @@ export default function Checkout() {
 
   return (
     <div className="checkout">
-      <span className="checkout__go-back-btn" onClick={() => navigate(-1)}>
-        Go back
-      </span>
       <FormikProvider value={formik}>
         <Form
           style={{

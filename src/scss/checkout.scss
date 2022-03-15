@@ -19,24 +19,6 @@
     justify-content: space-around;
   }
 
-  &__go-back-btn {
-    color: $darker-grey;
-    margin: 2rem;
-    width: 100%;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    @include tablet {
-      margin: 4rem;
-    }
-
-    @include large-desktop {
-      margin: 2rem 2rem 0 2rem;
-    }
-  }
-
   &__form-container,
   &__summary-container {
     margin: 2rem;

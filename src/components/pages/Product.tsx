@@ -72,14 +72,9 @@ export default function Product() {
 
   return (
     <div className="product">
-      
-      <span className="product__go-back-button" onClick={() => navigate(-1)}>
-        GO BACK
-      </span>
       {data?.getProduct.code === 200 ?   <>   <div className="product__product-details">
         <div className="product__image-container">
-          
-            
+
             <picture>
               <source
                 className="product__image"
