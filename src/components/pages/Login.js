@@ -32,7 +32,7 @@ export default function Login() {
       let { email, password } = values;
       setLoadingPage(true);
       try {
-        let result = await fetch('http://localhost:4000/graphql', {
+        let result = await fetch('https://audio-first.herokuapp.com/graphql', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

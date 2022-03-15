@@ -6,8 +6,9 @@ import { BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './scrollToTop';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
+
 const client = new ApolloClient({
-  uri: 'https://audio-first.herokuapp.com/',
+  uri: 'https://audio-first.herokuapp.com',
   cache: new InMemoryCache(),
 });
 
