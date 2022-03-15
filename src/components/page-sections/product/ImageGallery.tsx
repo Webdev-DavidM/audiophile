@@ -27,21 +27,21 @@ export default function ImageGallery(props: { imageGallery: ImageGalleryTS }) {
           <source
             className="product__gallery-image"
             media="(min-width: 1024px )"
-            srcSet={imageGallery.first.desktop}
+            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.first.desktop}`}
           />
           <source
             className="product__gallery-image"
             media="(max-width: 767px )"
-            srcSet={imageGallery.first.mobile}
+            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.first.mobile}`}
           />
           <source
             className="product__gallery-image"
             media="(min-width: 768px, max-width: 1023px)"
-            srcSet={imageGallery && imageGallery.first.tablet}
+            srcSet={`${process.env.PUBLIC_URL}/${imageGallery && imageGallery.first.tablet}`}
           />
           <img
             className="product__gallery-image"
-            src={imageGallery.first.tablet}
+            src={`${process.env.PUBLIC_URL}/${imageGallery.first.tablet}`}
             alt="product"
           />
         </picture>
@@ -51,21 +51,21 @@ export default function ImageGallery(props: { imageGallery: ImageGalleryTS }) {
           <source
             className="product__gallery-image"
             media="(min-width: 1024px )"
-            srcSet={imageGallery.second.desktop}
+            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.second.desktop}`}
           />
           <source
             className="product__gallery-image"
             media="(max-width: 767px )"
-            srcSet={imageGallery.second.mobile}
+            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.second.mobile}`}
           />
           <source
             className="product__gallery-image"
             media="(min-width: 768px, max-width: 1023px)"
-            srcSet={imageGallery && imageGallery.second.tablet}
+            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.second.tablet}`}
           />
           <img
             className="product__gallery-image"
-            src={imageGallery.second.tablet}
+            src={`${process.env.PUBLIC_URL}/${imageGallery.second.tablet}`}
             alt="product"
           />
         </picture>
@@ -75,21 +75,21 @@ export default function ImageGallery(props: { imageGallery: ImageGalleryTS }) {
           <source
             className="product__gallery-image"
             media="(min-width: 1024px )"
-            srcSet={imageGallery.third.desktop}
+            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.third.desktop}`}
           />
           <source
             className="product__gallery-image"
             media="(max-width: 767px )"
-            srcSet={imageGallery.third.mobile}
+            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.third.mobile}`}
           />
           <source
             className="product__gallery-image"
             media="(min-width: 768px, max-width: 1023px)"
-            srcSet={imageGallery && imageGallery.third.tablet}
+            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.third.tablet}`}
           />
           <img
             className="product__gallery-image"
-            src={imageGallery.third.tablet}
+            src={`${process.env.PUBLIC_URL}/${imageGallery.third.tablet}`}
             alt="product"
           />
         </picture>
