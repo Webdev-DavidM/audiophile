@@ -103,11 +103,7 @@ export default function Login() {
               error={formik.touched.password && Boolean(formik.errors.password)}
               helperText={formik.touched.password && formik.errors.password}
             />
-            <button
-              className="login__submit-btn"
-              type="button"
-              onClick={(e) => e.preventDefault()}
-            >
+            <button className="login__submit-btn" type="submit">
               LOGIN
             </button>
           </Form>
