@@ -30,10 +30,10 @@ const Header: React.FC = () => {
     <>
       <div id='top' className={headerMenu}>
         <div className='header__hamburger' onClick={() => closeDropDown()}>
-          <img src={hamburger} alt='hamburger menu' />
+          <img src={`${process.env.PUBLIC_URL}/${hamburger}`} alt='hamburger menu' />
         </div>
         <div className='header__title'>
-            <img src={logo} alt='audiophile logo' />
+            <img src={`${process.env.PUBLIC_URL}/${logo}`} alt='audiophile logo' />
         </div>
         <ul className='header__nav-links'>
           <NavLink
