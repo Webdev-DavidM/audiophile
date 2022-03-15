@@ -106,10 +106,7 @@ export default function Login() {
           <button
             className="login__submit-btn"
             type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              formik.handleSubmit();
-            }}
+            onClick={(e) => e.preventDefault()}
           >
             LOGIN
           </button>
