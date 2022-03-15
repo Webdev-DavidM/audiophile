@@ -2,7 +2,7 @@
   "name": "audiophile1",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://webdev-davidm.github.io/audiophile/",
+  "homepage": "https://webdev-davidm.github.io/audiophile",
   "dependencies": {
     "@apollo/client": "^3.5.10",
     "@emotion/react": "^11.8.1",
