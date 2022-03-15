@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import '../../scss/productpage.scss';
 import CategorySummary from '../sections-used-on-multiple-pages/CategorySummary';
 import 'slick-carousel/slick/slick.css';
@@ -16,7 +16,6 @@ export default function Product() {
   const { items, addProduct, setLoadingPage } = useContext(CartContext);
   let paramsProduct = useParams();
   const { loading, error, data } = useQuery(getProduct, {variables: { slug : paramsProduct.slug}});
-  let navigate = useNavigate();
   let [quantity, setQuantity] = useState<number>(1);
   let [product, setProduct] = useState<ProductsObject | undefined>(undefined);
   let [quantityError, setQuantityError] = useState<boolean>(false);
