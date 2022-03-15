@@ -75,7 +75,7 @@ function App() {
          path="/audiophile/product/:slug"
          element={<Product />}
        />
-        <Route path="/audiophile//login" element={<Login />} />
+        <Route path="/audiophile/login" element={<Login />} />
         <Route path="/audiophile/sign-up" element={<SignUp />} />
         <Route path="/audiophile/checkout" element={<Checkout />} />
         <Route path="/audiophile/*" element={<Homepage />} />
