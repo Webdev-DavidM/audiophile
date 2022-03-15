@@ -16,7 +16,7 @@ console.log(`${process.env.PUBLIC_URL}/`);
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <BrowserRouter basename={`${process.env.PUBLIC_URL}/`}>
+    <BrowserRouter basename={`${process.env.PUBLIC_URL}`}>
       <ScrollToTop>
         <CartContextProvider item={''}>
           <App />
