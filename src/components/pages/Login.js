@@ -28,9 +28,8 @@ export default function Login() {
       password: '',
     },
     validationSchema: validationSchema,
-    onSubmit: async (values, e) => {
+    onSubmit: async (values) => {
       console.log('hit');
-      e.preventDefault();
       let { email, password } = values;
       setLoadingPage(true);
       try {
