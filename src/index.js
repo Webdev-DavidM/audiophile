@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.tsx';
 import { CartContextProvider } from './ context/cartContext';
-import { HashRouter, BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import ScrollToTop from './scrollToTop';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
@@ -14,13 +14,11 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <HashRouter>
-      <BrowserRouter>
-        <ScrollToTop>
-          <CartContextProvider item={''}>
-            <App />
-          </CartContextProvider>
-        </ScrollToTop>
-      </BrowserRouter>
+      <ScrollToTop>
+        <CartContextProvider item={''}>
+          <App />
+        </CartContextProvider>
+      </ScrollToTop>
     </HashRouter>
   </ApolloProvider>,
   document.getElementById('app')
