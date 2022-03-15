@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <div className="footer">
       <div className="footer__title">
-        <img src={`${process.env.PUBLIC_URL}/${logo}`} alt="audiophile logo" />
+        <img src={logo} alt="audiophile logo" />
       </div>
       <ul className="footer__nav-links">
         <NavLink
