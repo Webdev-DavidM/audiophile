@@ -40,19 +40,19 @@ const Category = () => {
                   <source
                     className="category__image"
                     media="(min-width: 1024px )"
-                    srcSet={product.image.desktop}
+                    srcSet={`${process.env.PUBLIC_URL}/${product.image.desktop}`}
                   />{' '}
                   <source
                     className="category__image"
                     media="(max-width: 767px )"
-                    srcSet={product.image.mobile}
+                    srcSet={`${process.env.PUBLIC_URL}/${product.image.mobile}`}
                   />{' '}
                   <source
                     className="category__image"
                     media="(min-width: 768px, max-width: 1023px)"
-                    srcSet={product.image.tablet}
+                    srcSet={`${process.env.PUBLIC_URL}/${product.image.tablet}`}
                   />
-                  <img className="category__image" src={product.image.mobile} />
+                  <img className="category__image" src={`${process.env.PUBLIC_URL}/${product.image.mobile}`} alt="product" />
                 </picture>
               </div>
               <div className="category__copy-container">

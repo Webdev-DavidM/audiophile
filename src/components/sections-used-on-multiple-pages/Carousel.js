@@ -35,16 +35,21 @@ export default function SimpleSlider({ products }) {
     <Slider {...settings}>
       {products &&
         products.map((product, index) => (
-          <div key={index} className='product__carousel-image-container'>
-            <img className='product__carousel-image' src={product.image} />
+          <div key={index} className="product__carousel-image-container">
+            <img
+              className="product__carousel-image"
+              src={`${process.env.PUBLIC_URL}/${product.image}`}
+              alt="product"
+            />
 
-            <div className='product__title product__title--margin-top-and-bottom'>
+            <div className="product__title product__title--margin-top-and-bottom">
               {product.name}
             </div>
             <Link
               to={`/product/${product.slug}`}
-              data-test='product-cta'
-              className='product__product-cta product__product-cta--margin-top-and-bottom'>
+              data-test="product-cta"
+              className="product__product-cta product__product-cta--margin-top-and-bottom"
+            >
               SEE PRODUCT
             </Link>
           </div>
