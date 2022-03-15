@@ -14,7 +14,7 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <BrowserRouter basename="/">
+    <BrowserRouter basename="https://webdev-davidm.github.io/audiophile">
       <ScrollToTop>
         <CartContextProvider item={''}>
           <App />
