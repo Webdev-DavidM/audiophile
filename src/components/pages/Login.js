@@ -77,39 +77,41 @@ export default function Login() {
     <div className="login">
       <div className="login__container">
         <h4 className="login__heading">LOG IN</h4>
-        <Form onSubmit={formik.handleSubmit}>
-          <TextField
-            className="login__input"
-            fullWidth
-            variant="outlined"
-            id="email"
-            name="email"
-            label="Email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-            helperText={formik.touched.email && formik.errors.email}
-          />
-          <TextField
-            fullWidth
-            variant="outlined"
-            id="password"
-            name="password"
-            label="Password"
-            type="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            error={formik.touched.password && Boolean(formik.errors.password)}
-            helperText={formik.touched.password && formik.errors.password}
-          />
-          <button
-            className="login__submit-btn"
-            type="button"
-            onClick={(e) => e.preventDefault()}
-          >
-            LOGIN
-          </button>
-        </Form>
+        <FormikProvider value={formik}>
+          <Form onSubmit={formik.handleSubmit}>
+            <TextField
+              className="login__input"
+              fullWidth
+              variant="outlined"
+              id="email"
+              name="email"
+              label="Email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
+            />
+            <TextField
+              fullWidth
+              variant="outlined"
+              id="password"
+              name="password"
+              label="Password"
+              type="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
+            />
+            <button
+              className="login__submit-btn"
+              type="button"
+              onClick={(e) => e.preventDefault()}
+            >
+              LOGIN
+            </button>
+          </Form>
+        </FormikProvider>
         {loginStatus && <p className="login__status">{loginStatus}</p>}
       </div>
     </div>
