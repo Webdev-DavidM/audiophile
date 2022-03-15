@@ -12,11 +12,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-console.log(process.env.PUBLIC_URL);
+console.log(`${process.env.PUBLIC_URL}/`);
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <BrowserRouter>
+    <BrowserRouter basename={`${process.env.PUBLIC_URL}/`}>
       <ScrollToTop>
         <CartContextProvider item={''}>
           <App />
