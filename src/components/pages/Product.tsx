@@ -84,20 +84,20 @@ export default function Product() {
               <source
                 className="product__image"
                 media="(max-width: 767px)"
-                srcSet={`${data.getProduct.product.image.mobile}`}
+                srcSet={`${process.env.PUBLIC_URL}/${data.getProduct.product.image.mobile}`}
               />
               <source
                 className="product__image"
                 media="(min-width: 1024px)"
-                srcSet={`${data.getProduct.product.image.mobile}`}
+                srcSet={`${process.env.PUBLIC_URL}/${data.getProduct.product.image.mobile}`}
               />
               <source
                 className="product__image"
                 media="(min-width: 768px), (max-width: 1023px)"
-                srcSet={`${data.getProduct.product.image.tablet}`}
+                srcSet={`${process.env.PUBLIC_URL}/${data.getProduct.product.image.tablet}`}
               />
 
-              <img className="product__image" src={`${data.getProduct.product.image.mobile}`} />
+              <img className="product__image" src={`${process.env.PUBLIC_URL}/${data.getProduct.product.image.mobile}`} alt="product"/>
             </picture>
           
         
