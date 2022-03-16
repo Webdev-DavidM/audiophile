@@ -3,13 +3,11 @@ import { getIn, useFormik, FormikProvider, Form } from 'formik';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import '../../scss/checkout.scss';
-import { useNavigate } from 'react-router-dom';
 import { validationSchema } from '../../helpers/checkoutValidationSchema';
 import CheckoutSummary from './CheckoutSummary';
 import { CartContext } from '../../ context/cartContext';
 
 export default function Checkout() {
-  const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState('cash');
   const { showConfirmation, removeAllProducts } = useContext(CartContext);
 

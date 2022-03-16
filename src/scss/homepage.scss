@@ -167,7 +167,7 @@
     border-radius: 10px;
     margin: 2rem;
     padding: 2rem;
-    background: url("https://webdev-davidm.github.io/audiophile/assets/home/mobile/image-speaker-zx7.jpg")
+    background: url("https://audio-first-react-express.herokuapp.com/assets/home/mobile/image-speaker-zx7.jpg")
       no-repeat;
     background-size: cover;
     background-position: right;
@@ -177,7 +177,7 @@
     align-items: center;
 
     @include tablet {
-      background: url("https://webdev-davidm.github.io/audiophile/assets/home/tablet/image-speaker-zx7.jpg")
+      background: url("https://audio-first-react-express.herokuapp.com/assets/home/tablet/image-speaker-zx7.jpg")
         no-repeat;
       background-size: cover;
       background-position: center;
@@ -187,7 +187,7 @@
     }
 
     @include desktop {
-      background: url("https://webdev-davidm.github.io/audiophile/assets/home/desktop/image-speaker-zx7.jpg")
+      background: url("https://audio-first-react-express.herokuapp.com/assets/home/desktop/image-speaker-zx7.jpg")
         no-repeat;
       background-size: cover;
       background-position: center;
@@ -242,7 +242,7 @@
   }
 
   &__alternating-category-two-image {
-    background: url("https://webdev-davidm.github.io/audiophile/assets/home/mobile/image-earphones-yx1.jpg")
+    background: url("https://audio-first-react-express.herokuapp.com/assets/home/mobile/image-earphones-yx1.jpg")
       no-repeat;
     background-size: cover;
     background-position: center;
@@ -252,7 +252,7 @@
     order: 0;
 
     @include tablet {
-      background: url("https://webdev-davidm.github.io/audiophile/assets/home/tablet/image-earphones-yx1.jpg")
+      background: url("https://audio-first-react-express.herokuapp.com/assets/home/tablet/image-earphones-yx1.jpg")
         no-repeat;
       background-size: cover;
       background-position: center;
@@ -262,7 +262,7 @@
     }
 
     @include desktop {
-      background: url("https://webdev-davidm.github.io/audiophile/assets/home/desktop/image-earphones-yx1.jpg")
+      background: url("https://audio-first-react-express.herokuapp.com/assets/home/desktop/image-earphones-yx1.jpg")
         no-repeat;
       background-size: cover;
       background-position: center;

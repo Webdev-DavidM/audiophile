@@ -4,6 +4,7 @@ import '../../scss/productpage.scss';
 import CategorySummary from '../sections-used-on-multiple-pages/CategorySummary';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useNavigate } from 'react-router-dom';
 import { ProductsObject } from '../../Interfaces/productObject';
 import Carousel from '../sections-used-on-multiple-pages/Carousel';
 import ImageGallery from '../page-sections/product/ImageGallery';
@@ -15,6 +16,7 @@ import BottomCopySection from '../sections-used-on-multiple-pages/BottomCopySect
 export default function Product() {
   const { items, addProduct, setLoadingPage } = useContext(CartContext);
   let paramsProduct = useParams();
+  const navigate = useNavigate()
   const { loading, error, data } = useQuery(getProduct, {variables: { slug : paramsProduct.slug}});
   let [quantity, setQuantity] = useState<number>(1);
   let [product, setProduct] = useState<ProductsObject | undefined>(undefined);
@@ -70,9 +72,11 @@ export default function Product() {
 
   return (
     <div className="product">
+      <span className="product__go-back-btn" onClick={() => navigate(-1)}>
+        Go back
+      </span>
       {data?.getProduct.code === 200 ?   <>   <div className="product__product-details">
         <div className="product__image-container">
-
             <picture>
               <source
                 className="product__image"

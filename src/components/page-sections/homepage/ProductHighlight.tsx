@@ -8,7 +8,7 @@ export default function ProductHighlight() {
       <div className="homepage__product-highlight-image-container">
         <img
           className="homepage__product-highlight-image"
-          src="https://webdev-davidm.github.io/audiophile/assets/shared/desktop/image-speakers.png"
+          src="https://audio-first-react-express.herokuapp.com/assets/shared/desktop/image-speakers.png"
           alt="product"
         />
       </div>
@@ -28,3 +28,4 @@ export default function ProductHighlight() {
     </div>
   );
 }
+
