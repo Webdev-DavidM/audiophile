@@ -38,7 +38,7 @@ export default function SimpleSlider({ products }) {
           <div key={index} className="product__carousel-image-container">
             <img
               className="product__carousel-image"
-              src={`${process.env.PUBLIC_URL}/${product.image}`}
+              src={`https://audio-first-react-express.herokuapp.com/${product.image}`}
               alt="product"
             />
 

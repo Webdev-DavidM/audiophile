@@ -27,21 +27,21 @@ export default function ImageGallery(props: { imageGallery: ImageGalleryTS }) {
           <source
             className="product__gallery-image"
             media="(min-width: 1024px )"
-            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.first.desktop}`}
+            srcSet={`https://audio-first-react-express.herokuapp.com/${imageGallery.first.desktop}`}
           />
           <source
             className="product__gallery-image"
             media="(max-width: 767px )"
-            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.first.mobile}`}
+            srcSet={`https://audio-first-react-express.herokuapp.com/${imageGallery.first.mobile}`}
           />
           <source
             className="product__gallery-image"
             media="(min-width: 768px, max-width: 1023px)"
-            srcSet={`${process.env.PUBLIC_URL}/${imageGallery && imageGallery.first.tablet}`}
+            srcSet={`https://audio-first-react-express.herokuapp.com/${imageGallery && imageGallery.first.tablet}`}
           />
           <img
             className="product__gallery-image"
-            src={`${process.env.PUBLIC_URL}/${imageGallery.first.tablet}`}
+            src={`https://audio-first-react-express.herokuapp.com/${imageGallery.first.tablet}`}
             alt="product"
           />
         </picture>
@@ -51,21 +51,21 @@ export default function ImageGallery(props: { imageGallery: ImageGalleryTS }) {
           <source
             className="product__gallery-image"
             media="(min-width: 1024px )"
-            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.second.desktop}`}
+            srcSet={`https://audio-first-react-express.herokuapp.com/${imageGallery.second.desktop}`}
           />
           <source
             className="product__gallery-image"
             media="(max-width: 767px )"
-            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.second.mobile}`}
+            srcSet={`https://audio-first-react-express.herokuapp.com/${imageGallery.second.mobile}`}
           />
           <source
             className="product__gallery-image"
             media="(min-width: 768px, max-width: 1023px)"
-            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.second.tablet}`}
+            srcSet={`https://audio-first-react-express.herokuapp.com/${imageGallery.second.tablet}`}
           />
           <img
             className="product__gallery-image"
-            src={`${process.env.PUBLIC_URL}/${imageGallery.second.tablet}`}
+            src={`https://audio-first-react-express.herokuapp.com/${imageGallery.second.tablet}`}
             alt="product"
           />
         </picture>
@@ -75,21 +75,21 @@ export default function ImageGallery(props: { imageGallery: ImageGalleryTS }) {
           <source
             className="product__gallery-image"
             media="(min-width: 1024px )"
-            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.third.desktop}`}
+            srcSet={`https://audio-first-react-express.herokuapp.com/${imageGallery.third.desktop}`}
           />
           <source
             className="product__gallery-image"
             media="(max-width: 767px )"
-            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.third.mobile}`}
+            srcSet={`https://audio-first-react-express.herokuapp.com/${imageGallery.third.mobile}`}
           />
           <source
             className="product__gallery-image"
             media="(min-width: 768px, max-width: 1023px)"
-            srcSet={`${process.env.PUBLIC_URL}/${imageGallery.third.tablet}`}
+            srcSet={`https://audio-first-react-express.herokuapp.com/${imageGallery.third.tablet}`}
           />
           <img
             className="product__gallery-image"
-            src={`${process.env.PUBLIC_URL}/${imageGallery.third.tablet}`}
+            src={`https://audio-first-react-express.herokuapp.com/${imageGallery.third.tablet}`}
             alt="product"
           />
         </picture>

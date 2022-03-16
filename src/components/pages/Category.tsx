@@ -40,19 +40,19 @@ const Category = () => {
                   <source
                     className="category__image"
                     media="(min-width: 1024px )"
-                    srcSet={`${process.env.PUBLIC_URL}/${product.image.desktop}`}
+                    srcSet={`https://audio-first-react-express.herokuapp.com/${product.image.desktop}`}
                   />{' '}
                   <source
                     className="category__image"
                     media="(max-width: 767px )"
-                    srcSet={`${process.env.PUBLIC_URL}/${product.image.mobile}`}
+                    srcSet={`https://audio-first-react-express.herokuapp.com/${product.image.mobile}`}
                   />{' '}
                   <source
                     className="category__image"
                     media="(min-width: 768px, max-width: 1023px)"
-                    srcSet={`${process.env.PUBLIC_URL}/${product.image.tablet}`}
+                    srcSet={`https://audio-first-react-express.herokuapp.com/${product.image.tablet}`}
                   />
-                  <img className="category__image" src={`${process.env.PUBLIC_URL}/${product.image.mobile}`} alt="product" />
+                  <img className="category__image" src={`https://audio-first-react-express.herokuapp.com/${product.image.mobile}`} alt="product" />
                 </picture>
               </div>
               <div className="category__copy-container">
