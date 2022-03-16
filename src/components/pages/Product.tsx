@@ -67,8 +67,6 @@ export default function Product() {
     }
   };
 
-
-
   return (
     <div className="product">
       {data?.getProduct.code === 200 ?   <>   <div className="product__product-details">
@@ -78,20 +76,20 @@ export default function Product() {
               <source
                 className="product__image"
                 media="(max-width: 767px)"
-                srcSet={`${process.env.PUBLIC_URL}/${data.getProduct.product.image.mobile}`}
+                srcSet={`https://audio-first-react-express.herokuapp.com/${data.getProduct.product.image.mobile}`}
               />
               <source
                 className="product__image"
                 media="(min-width: 1024px)"
-                srcSet={`${process.env.PUBLIC_URL}/${data.getProduct.product.image.mobile}`}
+                srcSet={`https://audio-first-react-express.herokuapp.com/${data.getProduct.product.image.mobile}`}
               />
               <source
                 className="product__image"
                 media="(min-width: 768px), (max-width: 1023px)"
-                srcSet={`${process.env.PUBLIC_URL}/${data.getProduct.product.image.tablet}`}
+                srcSet={`https://audio-first-react-express.herokuapp.com/${data.getProduct.product.image.tablet}`}
               />
 
-              <img className="product__image" src={`${process.env.PUBLIC_URL}/${data.getProduct.product.image.mobile}`} alt="product"/>
+              <img className="product__image" src={`https://audio-first-react-express.herokuapp.com/${data.getProduct.product.image.mobile}`} alt="product"/>
             </picture>
           
         
