@@ -13,7 +13,7 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <HashRouter>
+    <HashRouter basename="/">
       <ScrollToTop>
         <CartContextProvider item={''}>
           <App />
