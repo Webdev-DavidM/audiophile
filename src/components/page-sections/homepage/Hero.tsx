@@ -9,22 +9,22 @@ export default function Hero() {
         <picture className="homepage__image">
           <source
             className="homepage__image"
-            srcSet="https://webdev-davidm.github.io/audiophile/assets/home/desktop/image-hero.jpg"
+            srcSet="https://audio-first-react-express.herokuapp.com/assets/home/desktop/image-hero.jpg"
             media="(min-width: 1024px)"
           />
           <source
             className="homepage__image"
-            srcSet="https://webdev-davidm.github.io/audiophile/assets/home/mobile/image-header.jpg"
+            srcSet="https://audio-first-react-express.herokuapp.com/assets/home/mobile/image-header.jpg"
             media="(max-width: 767px)"
           />
           <source
             className="homepage__image"
-            srcSet="https://webdev-davidm.github.io/audiophile/assets/home/tablet/image-header.jpg"
+            srcSet="https://audio-first-react-express.herokuapp.com/assets/home/tablet/image-header.jpg"
             media="(min-width: 768px, max-width: 1023px)"
           />
           <img
             className="homepage__image"
-            src="https://webdev-davidm.github.io/audiophile/assets/home/mobile/image-header.jpg"
+            src="https://audio-first-react-express.herokuapp.com/assets/home/mobile/image-header.jpg"
             alt="hero product"
           />
         </picture>
