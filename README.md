@@ -15,7 +15,7 @@ This full stack website was my first experience of using the react testing libra
 
 ## Screenshot
 
-![](/invoice.jpg)
+![](/screenshot.png)
 
 ## Live site
 
