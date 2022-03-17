@@ -173,7 +173,6 @@
     background-position: right;
     height: 500px;
     display: flex;
-    width: calc(100% -2rem);
     align-items: center;
 
     @include tablet {
