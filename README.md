@@ -7,12 +7,11 @@ This full stack website was my first experience of using the react testing libra
 ## Features
 
 - A user can navigate the site
+- They can add products to the cart, if the user tries to add more than in stock a warning message is shown
 - The user can log in and sign up
 - The user can only checkout if they are signed in
-- The a
-- The user can click on an invoice which will show the invoice in more detail, from there they can edit or delete the invoice
-- The user can create a new invoice which will create a unique ID for itself and uses todays date as the invoice date
-- The form has validation which makes sure the user fills out all the relevant fields.
+- Local storage saves their cart
+- Responsive website- changes layout on mobile, tablet and desktop
 
 ## Screenshot
 
