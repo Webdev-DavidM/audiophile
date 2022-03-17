@@ -2,11 +2,14 @@
 
 ## Overview
 
-This full stack website was my first experience of using the react testing library, typescript and graphql. I have gained alot of experience in these areas integrating them into a react front end with an express backend with a mongoDB database
+This full stack website was my first experience of using the react testing library, typescript and graphql. The backend is hosted on heroku and the front end is hosted on a separate heroku express application to make sure react router works.
 
 ## Features
 
-- A user can 
+- A user can navigate the site
+- The user can log in and sign up
+- The user can only checkout if they are signed in
+- The a
 - The user can click on an invoice which will show the invoice in more detail, from there they can edit or delete the invoice
 - The user can create a new invoice which will create a unique ID for itself and uses todays date as the invoice date
 - The form has validation which makes sure the user fills out all the relevant fields.
@@ -36,6 +39,9 @@ Built with
 - MongoDB
 - React slick slider used for carousel on the product page
 - Material UI for loading spinner
+- Local storage used to persist the cart if the user refreshes or returns to the page
+- React router
+- Heroku deployment
 
 ### Still to do
 
