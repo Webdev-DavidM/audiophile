@@ -1,4 +1,4 @@
-# Ecommerce 
+# Ecommerce audio shop app
 
 ## Overview
 
